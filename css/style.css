@@ -533,3 +533,10 @@ form[ name='add_to_email_list' ] input {
   border-bottom-left-radius: 3px;
   border: 1px solid rgb(204, 204, 204);
 }
+
+/*-------------------------------------------------------------------
+  Item Container
+-------------------------------------------------------------------*/
+.item-container .item p {
+  margin-left:20px;
+}
