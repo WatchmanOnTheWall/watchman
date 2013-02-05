@@ -20,16 +20,17 @@ class Media extends CI_Controller {
 	$this->db->select();
 
 	$item_query			= $this->db->get( $this->table_name );
-
+	
 	$data['item']			= $item_query->result_array();
 	$this->load->view( 'media/chronicle', $data );
 
 	$this->load->library( 'pagination' );
 	$config['base_url']		= base_url().'index.php/media/chronicle';
 	$config['total_rows']		= 200;
-	$config['per_page']		= 5; 
+	$config['per_page']		= 5;
 
-	$this->pagination->initialize($config); 
+	$this->pagination->initialize($config);
+	echo $this->pagination->create_links();
 
 	if ( count( $data['item'] == !null)) {
 		log_message( 'error', 'No items were gotten');

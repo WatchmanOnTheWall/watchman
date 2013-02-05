@@ -17,7 +17,7 @@ def split_data():
     query		= conn.fetchall()
     
     for data in query:
-        data_split		= data['full_text'].split('<hr id="system-readmore" />', 1)
+        data_split		= data['intro_text'].split('\n\n', 1)
         chron_id  		= int( data['id'] )
         title			= data['title']
         intro			= data_split[ 0 ]
@@ -28,13 +28,20 @@ def split_data():
             db.commit()
 
             # Remove the <hr> from the 'full_text'
-            new_ftext		= ''.join( data_split )
-            print new_ftext
-            update_full		= """update chronicle set `full_text` = %s where id = '%s' """
-            conn.execute( update_full, ( new_ftext, chron_id ))
-            db.commit()
+            # new_ftext		= ''.join( data_split )
+            # update_full		= """update chronicle set `full_text` = %s where id = '%s' """
+            # conn.execute( update_full, ( new_ftext, chron_id ))
+            # db.commit()
             
         except MySQLdb.IntegrityError:
             logging.warn("failed to update values %d, %s", chronicle_id, title )
 
 split_data()
+
+# Useful scripts not yet implemented automatically >>>
+
+# update chronicle set `intro_text` = replace(`intro_text`, "<p />", "<p>");
+# update chronicle set `intro_text` = concat(`intro_text`, "</p>");
+
+# update chronicle set `intro_text` = null
+

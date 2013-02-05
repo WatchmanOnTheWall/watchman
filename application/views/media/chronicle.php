@@ -29,7 +29,7 @@
                                                 <?php echo $article['title']; ?>
                                             </a>
                                         </h2>
-                                        <?php echo $article['intro_text'] ?>
+					<?php echo $article['intro_text'] ?>
                                         <a href="" class="readon">Read
                                             more...</a>
                                         <div class="article_separator">&nbsp</div>
