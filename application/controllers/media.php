@@ -17,17 +17,22 @@ class Media extends CI_Controller {
     }
     
     function chronicle() {
-	$this->load->library( 'pagination' );
-
 	$this->db->select();
 
-	$item_query	= $this->db->get( $this->table_name );
-
-	$data['item']	= $item_query->result_array();
+	$item_query			= $this->db->get( $this->table_name );
+	
+	$data['item']			= $item_query->result_array();
 	$this->load->view( 'media/chronicle', $data );
 
-	if ( count( $data['item'] == !null))
-	    {
+	$this->load->library( 'pagination' );
+	$config['base_url']		= base_url().'index.php/media/chronicle';
+	$config['total_rows']		= 200;
+	$config['per_page']		= 5;
+
+	$this->pagination->initialize($config);
+	echo $this->pagination->create_links();
+
+	if ( count( $data['item'] == !null)) {
 		log_message( 'error', 'No items were gotten');
 	    }
 	else {

@@ -13,11 +13,11 @@
                     <?php $this->load->view( 'header' ) ?>
                 </div>
                 <!-- Stop Container Top -->
-
+                
                 <!-- Start Container Middle -->
                 <div class="container_middle">
                     <div class="padding">
-                    <!-- Main Content -->
+                        <!-- Main Content -->
                         <div class="content" style="width: 958px; height: auto;">
                             <div class="padding">
                                 <h1>
@@ -27,7 +27,7 @@
                                 </h1>
                                 <div class="contentpaneopen">
                                     <?php
-					print $item->full_text ;
+     					print $item->full_text ;
 				    ?>
                                 </div>
                             </div>
