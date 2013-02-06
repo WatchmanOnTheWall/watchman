@@ -1,9 +1,9 @@
 <!doctype html>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
-
+    
     <!-- Head Tag -->
     <?php $this->load->view( 'head-tag' ) ?>
-
+    
     <body>
         <div class="body">
             <div id="container">
@@ -30,11 +30,16 @@
                                             </a>
                                         </h2>
 					<?php echo $article['intro_text'] ?>
-                                        <a href="" class="readon">Read
-                                            more...</a>
+                                        <a href="<?php echo base_url() ?>index.php/media/reader?id=<?php echo $article['id'] ?>"
+                                           class="readon" >
+                                            Read more...
+                                        </a>
                                         <div class="article_separator">&nbsp</div>
                                     </div>
                                     <?php }; ?>
+                                    <div class="paginate-links">
+                                        <?php echo $page_links; ?>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -51,7 +56,7 @@
                 
                 <!-- Start Container Bottom -->
                 <div class="container_bottom">
-
+                    
                 </div>
                 <!-- Stop Container Bottom -->
                 

@@ -9,7 +9,7 @@ class Media extends CI_Controller {
 
 	$this->load->helper('url');
 	$this->load->database();
-	$this->table_name = 'chronicle';
+	$this->load->library( 'pagination' );
     }
     
     function index() {
@@ -17,20 +17,23 @@ class Media extends CI_Controller {
     }
     
     function chronicle() {
-	$this->db->select();
+	$this->table_name = 'chronicle';
 
-	$item_query			= $this->db->get( $this->table_name );
-	
-	$data['item']			= $item_query->result_array();
-	$this->load->view( 'media/chronicle', $data );
+	$this->load->model( 'chronicle');
 
-	$this->load->library( 'pagination' );
+	$data['count_item']		= $this->chronicle->count_items();
+
 	$config['base_url']		= base_url().'index.php/media/chronicle';
-	$config['total_rows']		= 200;
-	$config['per_page']		= 5;
+	$config['per_page']		= 10;
+	$config['total_rows']		= $data['count_item'];
 
 	$this->pagination->initialize($config);
-	echo $this->pagination->create_links();
+
+	$query				= $this->chronicle->get( $config['per_page'], $this->uri->segment( 3 ));
+	$data['item']			= $query->result_array();
+	$data['page_links']		= $this->pagination->create_links();
+	print $config['total_rows'];
+	$this->load->view( 'media/chronicle', $data );
 
 	if ( count( $data['item'] == !null)) {
 		log_message( 'error', 'No items were gotten');
@@ -40,6 +43,8 @@ class Media extends CI_Controller {
 	}
     }
     function reader() {
+	$this->table_name = 'chronicle';
+
 	$this->db->select();
 	$id = $_GET['id'];
 	$query		= $this->db->get_where( $this->table_name, array('id' => $id ));
