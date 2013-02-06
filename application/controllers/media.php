@@ -28,11 +28,10 @@ class Media extends CI_Controller {
 	$config['total_rows']		= $data['count_item'];
 
 	$this->pagination->initialize($config);
-
+	
 	$query				= $this->chronicle->get( $config['per_page'], $this->uri->segment( 3 ));
 	$data['item']			= $query->result_array();
 	$data['page_links']		= $this->pagination->create_links();
-	print $config['total_rows'];
 	$this->load->view( 'media/chronicle', $data );
 
 	if ( count( $data['item'] == !null)) {
