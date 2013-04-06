@@ -540,3 +540,65 @@ form[ name='add_to_email_list' ] input {
 .item-container .item p {
   margin-left:20px;
 }
+.thumbnail {
+  float: left;
+  margin: 30px 54px;
+  box-shadow: 0 0 7px 2px;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+.thumbnail img {
+  margin: -12px 0;
+}
+.thumbnail .play {
+  top: 0px;
+  width: 120px;
+  height: 67px;
+  position: absolute;
+  opacity: 0.8;
+}
+.thumbnail .play:hover {
+  background: url('../images/youtube-hover.png') no-repeat;
+  background-position: 6px -20px;
+  background-size: 90%;
+}
+
+/*----------------------------------------
+  Popup
+----------------------------------------*/
+.popup {
+  z-index: 1000;
+  width: 1px;
+  height: 1px;
+  left: 50%;
+  top: 50%;
+  position: fixed;
+  display: none;
+}
+.popup iframe {
+  position: relative;
+  box-shadow: 0 0 100px 20px black;
+}
+.over-shadow {
+  z-index: 999;
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  background: black;
+  opacity: 0.9;
+  display: none;
+}
+[name="close"] {
+  display: inline-block;
+  font-size: 24px;
+  color: #FFF;
+  border-bottom: 3px solid #FFF;
+  background: transparent;
+  position: relative;
+}
+[name="close"]:hover {
+  color: #999;
+  border-color: #999;
+  cursor: pointer;
+}
