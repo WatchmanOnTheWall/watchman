@@ -533,7 +533,9 @@ form[ name='add_to_email_list' ] input {
   border-bottom-left-radius: 3px;
   border: 1px solid rgb(204, 204, 204);
 }
+.thumb {
 
+}
 .thumbnail {
   float: left;
   margin: 30px 54px;
@@ -545,9 +547,6 @@ form[ name='add_to_email_list' ] input {
 .thumbnail img {
   margin: -12px 0;
 }
-.thumbnail img:hover {
-  opacity: 0.7;
-  }
 .thumbnail .play {
   top: 0px;
   width: 120px;
@@ -586,7 +585,7 @@ form[ name='add_to_email_list' ] input {
   opacity: 0.9;
   display: none;
 }
-div[name="close"] {
+[name="close"] {
   display: inline-block;
   font-size: 24px;
   color: #FFF;
@@ -594,7 +593,7 @@ div[name="close"] {
   background: transparent;
   position: relative;
 }
-div[name="close"]:hover {
+[name="close"]:hover {
   color: #999;
   border-color: #999;
   cursor: pointer;
