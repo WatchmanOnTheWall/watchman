@@ -1,9 +1,11 @@
 <?php
-    function base_url()
-    {
-	return 'http://dev.watchman.ca/';
+    if( function_exists( "base_url()" ) ) {
+	function base_url()
+	{
+	    return 'http://dev.watchman.ca/';
+	}
     }
-
+    
     if( ! defined('BASEPATH') ) {
 	define( 'BASEPATH', '/server/watchman.ca/' );
     }

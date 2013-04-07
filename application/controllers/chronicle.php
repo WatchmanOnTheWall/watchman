@@ -1,6 +1,6 @@
 <?php
 
-class Chronicle extends CI_Model {
+class Chronicle extends CI_Controller {
 
     function __construct()
     {
