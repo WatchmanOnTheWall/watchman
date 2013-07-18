@@ -1,47 +1,69 @@
 <!doctype html>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 
-    <!-- Head Tag -->
-    <?php $this->load->view( 'head-tag' ) ?>
-
+    <!-- Global Head -->
+    <?php
+     	include FCPATH.'static/resources/head.php';
+    ?>
+    
     <body>
         <div class="body">
             <div id="container">
                 
                 <!-- Start Container Top -->
                 <div class="container_top">
-                    <?php $this->load->view( 'header' ) ?>
+                    <?php
+     			include FCPATH.'static/resources/header.php';
+		    ?>
                 </div>
                 <!-- Stop Container Top -->
-                
+
                 <!-- Start Container Middle -->
                 <div class="container_middle">
                     <div class="padding">
+                        
                         <!-- Main Content -->
-                        <div class="content" style="width: 958px; height: auto;">
+                        <div class="content full">
                             <div class="padding">
+                                <h1><?php echo $title
+				?></h1>
                                 <div class="item-container blog">
-                                    <?php foreach ($item as $article) { ?>
+                                    <div class="pagination">
+                                        <?php echo $links ?>
+                                    </div>
+                                     <?php foreach ( $article as $a ): ?>
                                     <div class="item chronicle">
                                         <a title="print"></a>
                                         <h2 class="title">
-                                            <a href="<?php echo base_url() ?>index.php/media/reader?id=<?php echo $article['id'] ?>">
-                                                <?php echo $article['title']; ?>
+                                            <a href="<?php echo base_url()
+						. 'media/reader/'
+						. $a->id ?>" >
+                                                <?php echo $a->title; ?>
                                             </a>
                                         </h2>
-					<?php echo $article['intro_text'] ?>
-                                        <a href="" class="readon">Read
+                                        <div class="sample">
+                                            <?php print_r( $a->sample ); ?>
+                                        </div>
+                                        <a href="<?php echo base_url()
+					    . 'media/reader/'
+					    . $a->id ?>"
+                                           class="button">Read
                                             more...</a>
                                         <div class="article_separator">&nbsp</div>
                                     </div>
-                                    <?php }; ?>
+                                    <?php endforeach; ?>
+                                    <div class="pagination">
+                                        <?php echo $links ?>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                         
                         <!-- Bottom Content -->
 	                <div id="content_bottom">
-                            <?php $this->load->view( 'copyright' ) ?>
+                            <?php
+     				include FCPATH.'static/resources/copyright.php';
+			    ?>
 	                </div>
                         <div style="clear: both; margin: -7px 0;"></div>
                     </div>

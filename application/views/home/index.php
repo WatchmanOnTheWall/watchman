@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 
     <!-- Head Tag -->
-    <?php $this->load->view( 'head' ) ?>
+    <?php include FCPATH.'static/head.php' ; ?>
 
     <body>
         <div class="body">
@@ -10,7 +10,7 @@
                 
                 <!-- Start Container Top -->
                 <div class="container_top">
-                    <?php $this->load->view( 'header' ) ?>
+                    <?php include 'header.php' ; ?>
                 </div>
                 <!-- Stop Container Top -->
 
@@ -28,7 +28,7 @@
                                         src="http://www.youtube.com/embed/CEVUf_RM6uI?feature=player_embedded"
                                         frameborder="0"
                                         allowfullscreen></iframe>
-                                <img src="<?php echo base_url() ?>images/5-smooth-stones-banner.jpg"
+                                <img src="<?php echo base_url() ?>/images/5-smooth-stones-banner.jpg"
                                      class="banner" alt="5 Smooth Stones" />
                             </div>
                         </div>
@@ -50,12 +50,12 @@
                                     </form>
                                 </div>
                                 <div class="moduletable">
-                                    <?php $this->load->view( 'book-slideshow' ) ?>
+                                    <?php include 'book-slideshow.php' ; ?>
                                 </div>
                                 <div class="moduletable">
                                     <div style="text-align: center;">
                                         <a href="">
-                                            <img class="podcast-symbol" src="<?php echo base_url() ?>images/podcasting_symbol.png" class="" alt="Podcasts" />
+                                            <img class="podcast-symbol" src="<?php echo base_url() ?>/images/podcasting_symbol.png" class="" alt="Podcasts" />
                                         </a>
                                     </div>
                                 </div>
@@ -63,7 +63,7 @@
                                     <div style="text-align: center;">
                                         <a href="">
                                             <img class="banner"
-                                                 src="<?php echo base_url() ?>images/off-the-wall-tv.jpg"
+                                                 src="<?php echo base_url() ?>/images/off-the-wall-tv.jpg"
                                                  class="" alt="Off The Wall" />
                                         </a>
                                     </div>
@@ -73,7 +73,7 @@
                         
                         <!-- Bottom Content -->
 	                <div id="content_bottom">
-                            <?php $this->load->view( 'copyright' ) ?>
+                            <?php include FCPATH.'static/copyright.php' ; ?>
 	                </div>
                         <div style="clear: both; margin: -7px 0;"></div>
                     </div>
@@ -90,9 +90,4 @@
             </div>
         </div>
     </body>
-    <script type="text/javascript">
-        function build_table() {
-            
-        }
-    </script>
 </html>

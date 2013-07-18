@@ -1,22 +1,16 @@
 <!doctype html>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
-    <head>
-        
-        <!-- Global Head -->
-        <?php
-     	    include $_SERVER['DOCUMENT_ROOT']. 'static/head.php';
-	?>
 
-    </head>
+    <!-- Head Tag -->
+    <?php include 'resources/head.php' ; ?>
+    
     <body>
         <div class="body">
             <div id="container">
                 
                 <!-- Start Container Top -->
                 <div class="container_top">
-                    <?php
-     			//include BASEPATH. 'header.php';
-		    ?>
+                    <?php include 'resources/header.php' ; ?>
                 </div>
                 <!-- Stop Container Top -->
 
@@ -28,7 +22,14 @@
                         <div class="content" style="width: 630px; height: auto;">
                             <div class="padding">
                                 <h1>Welcome to Watchman on the Wall Ministries</h1>
-                                <p>Hello world</p>
+
+                                <!-- Welcome Video -->
+                                <iframe height="360" class="welcome-video"
+                                        src="http://www.youtube.com/embed/CEVUf_RM6uI?feature=player_embedded"
+                                        frameborder="0"
+                                        allowfullscreen></iframe>
+                                <img src="<?php echo base_url() ?>resources/images/5-smooth-stones-banner.jpg"
+                                     class="banner" alt="5 Smooth Stones" />
                             </div>
                         </div>
                         
@@ -48,23 +49,26 @@
                                         <input type="text" id="email" value="" />
                                     </form>
                                 </div>
+
                                 <div class="moduletable">
                                     <?php
-     					//$this->load->view( 'book-slideshow' );
+     					include 'resources/book-slideshow.php' ;
 				    ?>
                                 </div>
+                                
                                 <div class="moduletable">
                                     <div style="text-align: center;">
                                         <a href="">
-                                            <img class="podcast-symbol" src="<?php echo base_url() ?>images/podcasting_symbol.png" class="" alt="Podcasts" />
+                                            <img class="podcast-symbol" src="<?php echo base_url() ?>/resources/images/podcasting_symbol.png" class="" alt="Podcasts" />
                                         </a>
                                     </div>
                                 </div>
+                                
                                 <div class="moduletable">
                                     <div style="text-align: center;">
                                         <a href="">
                                             <img class="banner"
-                                                 src="<?php echo base_url() ?>images/off-the-wall-tv.jpg"
+                                                 src="<?php echo base_url() ?>/resources/images/off-the-wall-tv.jpg"
                                                  class="" alt="Off The Wall" />
                                         </a>
                                     </div>
@@ -74,28 +78,22 @@
                         
                         <!-- Bottom Content -->
 	                <div id="content_bottom">
-                            <?php
-     				//$this->load->view( 'copyright' );
-			    ?>
+                            <?php include 'resources/copyright.php' ; ?>
 	                </div>
                         <div style="clear: both; margin: -7px 0;"></div>
                     </div>
                     
                 </div>
-                <!-- Stop Container Middle -->
-                
+
                 <!-- Start Container Bottom -->
                 <div class="container_bottom">
-
+                    
                 </div>
                 <!-- Stop Container Bottom -->
-                
             </div>
         </div>
+        <?php
+     	    include 'resources/scripts.php' ;
+	?>
     </body>
-    <script type="text/javascript">
-        function build_table() {
-            
-        }
-    </script>
 </html>
