@@ -46,16 +46,64 @@
                                             </div>
                                         </div>
                                         <?php endif ?>
-                                        <div class="text-right">
-                                            <h3>Address: </h3>
+                                        <div class="order text-right">
+                                            <h2>Shipping Address</h2>
                                             <div>
+                                                <label>Country: </label>
+                                                <select name="country">
+                                                    <option disabled="disabled" selected="selected">
+                                                        Select a country
+                                                    </option>
+                                                    <option disabled="disabled" >
+                                                        ---
+                                                    </option>
+                                                    <option value="United States">
+                                                        United States
+                                                    </option>
+                                                    <option value="Canada">
+                                                        Canada
+                                                    </option>
+                                                    <option disabled="disabled" >
+                                                        ---
+                                                    </option>
+                                                    <?php foreach( $country as $c ): ?>
+                                                    <option value="<?php echo $c->nicename ?>">
+                                                        <?php echo $c->nicename ?>
+                                                    </option>
+                                                    <?php endforeach; ?>
+                                                </select>
+                                            </div> 
+                                            <div> 
+                                                <label>Province / State: </label>
+                                                <input type="text" name="region" />
+                                            </div> 
+                                            <div> 
+                                                <label>City: </label>
+                                                <input type="text" name="city" />
+                                            </div> 
+                                            <div> 
                                                 <label>Street: </label>
-                                                <input type="text" name="address" />
+                                                <input type="text" name="street" />
+                                            </div> 
+                                            <div> 
+                                                <label>Postal Code: </label>
+                                                <input type="text" name="code" />
+                                            </div>
+                                            <br />
+                                            <h2>Contact</h2>
+                                            <div>
+                                                <label>First Name: </label>
+                                                <input type="text" name="first_name" />
+                                            </div> 
+                                            <div>
+                                                <label>Last Name: </label>
+                                                <input type="text" name="last_name" />
                                             </div> 
                                             <div>
                                                 <label>Email Address: </label>
-                                                <input type="text" name="address" />
+                                                <input type="text" name="email" />
                                             </div> 
+                                            <div class="validate-alert"></div>
                                         </div>
                                         <input type="hidden" name="amount"
                                                class="amount" />

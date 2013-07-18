@@ -116,24 +116,41 @@ function build_row( data )
     return item
 }
 
+function validate()
+{
+    $('.validate-alert').html( '' );
+    var inputs		= $( '.order input, .order select' )
+    , i			= 0;
+    inputs.each( function( ) {
+        if( $.trim( $( this ).val() ) == ''
+            || $( this ).val() === null ) {
+            i++;
+            $( this ).css( 'outline', '#F00 thin solid' )
+        }
+    });
+    if( $( '.wanted:checked' ).length < 1 ) {
+        $('.validate-alert').html( 'There are no items selected' );
+        i++;
+    }
+    if( i > 0 ) {
+        console.log( 'Form not validated.' );
+        return false;
+    }
+    return true;
+}
+
 num_selected	= function(){
     return $('.wanted:checked').length
 }
 var checked			= [];
-var total			= 0;
 
 $("input.wanted").click(
     function() {
         var value		= $( this ).val()
-        , price		= $.parseJSON( $(this).attr('row-data') ).price
         if ( $(this).is( ":checked" ) ) {
             checked.push( value )
-            total += parseInt( price, 10);
-            
-            $( '.amount' ).val( total );
 
             console.log( "checked", checked );
-            console.log([ "Total: ", total ]);
 
             return;
         }
@@ -142,18 +159,27 @@ $("input.wanted").click(
             return a != value;
         });
 
-        total -= price;
-        
-        $( '.amount' ).val( total )
-        
         console.log( "checked", checked );
-        console.log([ "Total: ", total ]);
     }
 );
 
 console.log([ "Checked: ", checked ])
 
 $('#checkout-button').click(function(){
+    if( ! validate() ){
+        return false;
+    };
+
+    var total			= 0;
+    
+    $( '.wanted:checked' ).each( function() {
+        var price		= $.parseJSON( $( this ).attr('row-data') ).price;
+        var price		= parseInt( price, 10 );
+        total += price;
+    });
+    $( '.amount' ).val( total );
+    
+    console.log([ "Total: ", total ]);
     console.log([ "Checked: ", checked ])
 
     var token = function(res){
@@ -168,7 +194,7 @@ $('#checkout-button').click(function(){
 
         //Live Key:
         //key:         'pk_UyniFUBW5FwmyFDfbiNxWdVEOSuTP',
-        address:     true,
+        //address:     true,
         amount:      total + '00',
         name:        'Checkout',
         description: function() {

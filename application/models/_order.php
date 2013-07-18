@@ -25,6 +25,11 @@ class _order extends CI_Model {
 	return $query->result();
     }
 
+    function get_countries( $id = null ) {
+	$query = $this->db->get( 'country' );
+	return $query->result();
+    }
+
     function charge( $api_key, $amount ) {
 
 	// Set your secret key: remember to change this to your live secret key

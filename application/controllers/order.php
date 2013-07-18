@@ -18,6 +18,7 @@ class Order extends CI_Controller {
 	$data['audio']		= false;
 	$data['video']		= false;
 	$data['book']		= false;
+	$data['country']	= $this->Order->get_countries();
 	
 	foreach( $data['query'] as $q ){
 	    if ( $q->medium == 'audio' ) {
@@ -70,6 +71,7 @@ class Order extends CI_Controller {
 		    }
 		}
 	    }
+	    echo $price.'<br />';
 	    if( $price != $_POST[ 'amount' ] ) {
 		$data[ 'title' ]			= 'An error has occured';
 		$data[ 'error' ]			= '<b>There was an error with the payment process. Your card was not charged.</b>';
@@ -77,17 +79,26 @@ class Order extends CI_Controller {
 		return false;
 	    }
 	
-	    $amount		= $price.'00';
+	    $amount				= $price.'00';
 	    $data[ 'title' ]			= 'Order Complete!';
 	    $data[ 'price' ]			= $price;
 	      
 	    $this->load->view( 'order/landing', $data);
+
 	    // Create the charge on Stripe's servers - this will charge the user's
 	    // card
 	    $this->Order->charge( $api_key, $amount );
 
 	    // Send Email
+	    $data[ 'name' ]		= sprintf( "%s %s", $_POST[ 'first_name' ], $_POST[ 'last_name' ] );
+	    $data[ 'country' ]		= $_POST[ 'country' ];
+	    $data[ 'region' ]		= $_POST[ 'region' ];
+	    $data[ 'city' ]		= $_POST[ 'city' ];
+	    $data[ 'street' ]		= $_POST[ 'street' ];
+	    $data[ 'code' ]		= $_POST[ 'code' ];
+	    $data[ 'email' ]		= $_POST[ 'email' ];
 
+	    $data[ 'title' ]			= 'Order';
 	    $message			= $this->load->view( 'order/email', $data, true );
 	    $email			= "travis@webheroes.ca";
 	    $this->load->library( 'email' );

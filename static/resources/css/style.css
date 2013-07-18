@@ -834,4 +834,14 @@ dl.definition dd {
   letter-spacing: 1px;
 }
 
+/*----------------------------------------
+  Order Form
+----------------------------------------*/
+form .order input[type="text"] {
+  width: 200px;
+}
 
+.validate-alert {
+  margin: 10px 0;
+  color: red;
+}
