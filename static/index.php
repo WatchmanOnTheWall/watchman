@@ -1,3 +1,4 @@
+<?php $active = 'home'; ?>
 <!doctype html>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 
@@ -56,17 +57,17 @@
 				    ?>
                                 </div>
                                 
-                                <div class="moduletable">
-                                    <div style="text-align: center;">
-                                        <a href="">
-                                            <img class="podcast-symbol" src="<?php echo base_url() ?>/resources/images/podcasting_symbol.png" class="" alt="Podcasts" />
-                                        </a>
-                                    </div>
-                                </div>
+                                <!-- <div class="moduletable"> -->
+                                <!--     <div style="text-align: center;"> -->
+                                <!--         <a href=""> -->
+                                <!--             <img class="podcast-symbol" src="<?php echo base_url() ?>/resources/images/podcasting_symbol.png" class="" alt="Podcasts" /> -->
+                                <!--         </a> -->
+                                <!--     </div> -->
+                                <!-- </div> -->
                                 
                                 <div class="moduletable">
                                     <div style="text-align: center;">
-                                        <a href="">
+                                        <a href="/media/video.php">
                                             <img class="banner"
                                                  src="<?php echo base_url() ?>/resources/images/off-the-wall-tv.jpg"
                                                  class="" alt="Off The Wall" />
