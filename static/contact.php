@@ -4,7 +4,7 @@
         
         <!-- Global Head -->
         <?php
-     	    include '../resources/head.php';
+     	    include 'resources/head.php';
 	?>
 
     </head>
@@ -15,7 +15,7 @@
                 <!-- Start Container Top -->
                 <div class="container_top">
                     <?php
-     			include '../resources/header.php';
+     			include 'resources/header.php';
 		    ?>
                 </div>
                 <!-- Stop Container Top -->
@@ -25,10 +25,20 @@
                     <div class="padding">
                         
                         <!-- Main Content -->
-                        <div class="content" style="width: 955px; height: auto;">
+                        <div class="content full" >
                             <div class="padding">
-                                <h1>Videos</h1>
-                                <div class="videos">
+                                <h1>Contact Us</h1>
+                                <div class="editable">
+                                    <p style="text-align: center;">Box 3458<br>
+                                        Spruce Grove, AB Canada<br>
+                                        T7X 3A7<br>
+                                        Phone: 780.962-5699<br>
+                                        Fax:  780.962.5688<br>
+                                        Email:
+                                        <span>
+                                            <a href="mailto:info@watchman.ca">info@watchman.ca</a>
+                                        </span>
+                                    </p>
                                 </div>
                             </div>
                         </div>
@@ -36,7 +46,7 @@
                         <!-- Bottom Content -->
 	                <div id="content_bottom">
                             <?php
-     				include '../resources/copyright.php';
+     				include 'resources/copyright.php';
 			    ?>
 	                </div>
                         <div style="clear: both; margin: -7px 0;"></div>
@@ -53,11 +63,8 @@
                 
             </div>
         </div>
-
         <?php
-     	    include '../resources/scripts.php' ;
+     	    include 'resources/scripts.php' ;
 	?>
-        <script type="text/javascript" src="<?php echo base_url() ?>resources/js/youtube.js"></script>
-        <script type="text/javascript" src="<?php echo base_url() ?>resources/js/youtube-popup.js"></script>
     </body>
 </html>

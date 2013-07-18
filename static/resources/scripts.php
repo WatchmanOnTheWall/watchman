@@ -4,7 +4,7 @@
 <script src="<?php echo base_url() ?>resources/js/responsiveslides.min.js" rel="javascript" type="text/javascript"></script>
 <script type="text/javascript">
     $( function() {
-        $(".rslides").responsiveSlides();
+        $( ".rslides" ).responsiveSlides();
         
     });
 </script>

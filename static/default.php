@@ -25,7 +25,7 @@
                     <div class="padding">
                         
                         <!-- Main Content -->
-                        <div class="content" style="width: 955px; height: auto;">
+                        <div class="content full">
                             <div class="padding">
                                 <h1>DEFAULT</h1>
                                 <div class="editable">
