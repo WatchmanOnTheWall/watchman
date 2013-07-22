@@ -3,15 +3,14 @@
     
     <!-- Head Tag -->
     
-    <?php include FCPATH.'static/head.php' ?>
-    
+    <?php include FCPATH.'static/resources/head.php' ?>
     <body>
         <div class="body">
             <div id="container">
                 
                 <!-- Start Container Top -->
                 <div class="container_top">
-                    <?php include FCPATH.'static/header.php' ?>
+                    <?php include FCPATH.'static/resources/header.php' ?>
                 </div>
                 <!-- Stop Container Top -->
                 
@@ -43,7 +42,7 @@
                         
                         <!-- Bottom Content -->
 	                <div id="content_bottom">
-                            <?php include FCPATH.'static/copyright.php' ?>
+                            <?php include FCPATH.'static/resources/copyright.php' ?>
 	                </div>
                         <div style="clear: both; margin: -7px 0;"></div>
                     </div>

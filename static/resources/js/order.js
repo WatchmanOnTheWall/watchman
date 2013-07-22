@@ -130,29 +130,29 @@ $("input.wanted").click(
             checked.push( value )
             total += parseInt( price, 10);
             
-            $( '.amount' ).val( total )
+            $( '.amount' ).val( total );
 
-            $
-            
             console.log( "checked", checked );
             console.log([ "Total: ", total ]);
 
+            return;
         }
-        else {
-            checked		= $.grep( checked, function( a ){
-                return a != value;
-            });
-            
-            total -= parseInt(  $( this ).val().price, 10);
-            
-            $( '.amount' ).val( total )
-            
-            console.log( "checked", checked );
-            console.log([ "Total: ", total ]);
-        }
+        
+        checked		= $.grep( checked, function( a ){
+            return a != value;
+        });
+
+        total -= price;
+        
+        $( '.amount' ).val( total )
+        
+        console.log( "checked", checked );
+        console.log([ "Total: ", total ]);
     }
 );
+
 console.log([ "Checked: ", checked ])
+
 $('#checkout-button').click(function(){
     console.log([ "Checked: ", checked ])
 
@@ -165,18 +165,14 @@ $('#checkout-button').click(function(){
 
     StripeCheckout.open({
         key:         'pk_yLFjPSiZOODGvjlBquqqNpcfqo2Fa',
+
         //Live Key:
         //key:         'pk_UyniFUBW5FwmyFDfbiNxWdVEOSuTP',
-        //address:     true,
+        address:     true,
         amount:      total + '00',
         name:        'Checkout',
         description: function() {
-            if( num_selected() == 1 ) {
-                return num_selected() + ' item (' + total + ')';
-            }
-            else{
-                return num_selected() + ' items (' + total + ')';
-            }
+            return num_selected() + ' items (' + total + ')';
         },
         panelLabel:  'Checkout',
         token:       token

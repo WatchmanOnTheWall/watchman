@@ -505,6 +505,10 @@ img.image {
   width: 275px;
 }
 
+.text-right{
+  text-align: right;
+}
+
 .blog .article_separator {
   display: inline-block;
   width: 100%;

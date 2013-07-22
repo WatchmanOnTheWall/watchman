@@ -55,71 +55,53 @@ class Order extends CI_Controller {
 	    // Set your secret key: remember to change this to your live secret key
 	    // in production
 	    // See your keys here https://manage.stripe.com/account
-	    Stripe::setApiKey( $api_key);
+	    Stripe::setApiKey( $api_key );
 	
 	    $price			= 0;
-	    $data['price']		= 0;
-	    $data['titles']		= [];
-	    $data['bought']		= [];
+	    $data[ 'price' ]		= 0;
+	    $data[ 'titles' ]		= [];
+	    $data[ 'bought' ]		= [];
 
-	    foreach( $data['query'] as $q ) {
-		if ( in_array( $q->id, $_POST, true ) ){
-		    $price	+= $q->price;
-		    array_push( $data['bought'], $q );
+	    foreach( $data[ 'query' ] as $key => $val ) {
+		foreach( $_POST as $Pk => $Pv ){
+		    if ( $Pk == 'id_'.$val->id ) {
+			$price	+= $val->price;
+			array_push( $data[ 'bought' ], $val );
+		    }
 		}
 	    }
-	    if( $price != $_POST['amount'] ) {
-		$data['title']			= 'Something went wrong';
-		$data['error']			= '<b>There was an error with the payment process. Your card was not charged.</b>';
+	    if( $price != $_POST[ 'amount' ] ) {
+		$data[ 'title' ]			= 'An error has occured';
+		$data[ 'error' ]			= '<b>There was an error with the payment process. Your card was not charged.</b>';
 		$this->load->view( 'order/landing', $data);
 		return false;
 	    }
 	
 	    $amount		= $price.'00';
+	    $data[ 'title' ]			= 'Order Complete!';
+	    $data[ 'price' ]			= $price;
+	      
+	    $this->load->view( 'order/landing', $data);
 	    // Create the charge on Stripe's servers - this will charge the user's
 	    // card
-	    $data['title']			= 'Order Complete!';
-	    $data['price']			= $price;
-	    $this->load->view( 'order/landing', $data);
 	    $this->Order->charge( $api_key, $amount );
+
+	    // Send Email
+
+	    $message			= $this->load->view( 'order/email', $data, true );
+	    $email			= "travis@webheroes.ca";
+	    $this->load->library( 'email' );
+	    $config[ 'mailtype' ] = 'html';
+
+	    $this->email->initialize($config);
+	    $this->email->from('contact@webheroes.ca', 'Watchman');
+	    $this->email->to( $email );
+	    $this->email->subject('Watchman Order');
+	    $this->email->message( $message );
+	    $this->email->send();
 
 	    return true;
 	}
-    }
-
-    function charge()
-    {
-	$api_key		= "2KBHK7QsyCry40kURtkWDODDfdro4oBb";
-
-	// Set your secret key: remember to change this to your live secret key
-	// in production
-	// See your keys here https://manage.stripe.com/account
-	Stripe::setApiKey( $api_key);
-	
-	$query		= $this->Order->get_inventory();
-	$price		= 0;
-
-	foreach( $query as $q ) {
-	    if ( in_array( $q->id, $_POST, true ) ){
-		$price	+= $q->price;
-		echo $q->price."<br />";
-	    }
-	}
-	if( $price != $_POST['amount'] ) {
-	    return false;
-	}
-	
-	$amount		= $price.'00';
-	
-	// Create the charge on Stripe's servers - this will charge the user's
-	// card
-	$this->Order->charge( $api_key, $amount );
-	$data['title']			= 'You ordered the stuff!';
-	$this->load->view( 'order', $data);
-
-	$_POST['stripeToken']	= null;
-	return true;
-
     }
     
     function fix(){

@@ -23,7 +23,7 @@
                             <div class="padding">
                                 <h1><?php echo $title
 				?></h1>
-                                <form action="<?php echo base_url() ?>index.php/order/live_complete" method="POST">
+                                <form action="/order/complete" method="POST">
                                     <div class="padding">
                                         <?php if ( $book ): ?>
                                         <div id="books">
@@ -46,10 +46,21 @@
                                             </div>
                                         </div>
                                         <?php endif ?>
+                                        <div class="text-right">
+                                            <h3>Address: </h3>
+                                            <div>
+                                                <label>Street: </label>
+                                                <input type="text" name="address" />
+                                            </div> 
+                                            <div>
+                                                <label>Email Address: </label>
+                                                <input type="text" name="address" />
+                                            </div> 
+                                        </div>
                                         <input type="hidden" name="amount"
                                                class="amount" />
                                         <input type="button" id="checkout-button"
-                                               value="Checkout" style="margin: 10px 0 17px;"/>
+                                               value="Purchase" style="margin: 10px 0 17px;"/>
                                     </div>
                                 </form>
                                 
