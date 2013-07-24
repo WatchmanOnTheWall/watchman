@@ -207,11 +207,11 @@ $('#checkout-button').click(function(){
     };
 
     StripeCheckout.open({
-        key:         'pk_yLFjPSiZOODGvjlBquqqNpcfqo2Fa',
+        //Dev Key:
+        // key:         'pk_yLFjPSiZOODGvjlBquqqNpcfqo2Fa',
 
         //Live Key:
-        //key:         'pk_UyniFUBW5FwmyFDfbiNxWdVEOSuTP',
-        //address:     true,
+        key:         'pk_UyniFUBW5FwmyFDfbiNxWdVEOSuTP',
         amount:      total + '00',
         name:        'Checkout',
         description: function() {

@@ -48,10 +48,11 @@ class Order extends CI_Controller {
 	if( ! isset( $_POST[ 'stripetoken' ] ) ){
 	    $data[ 'query' ]		= $this->Order->get_inventory();
 	    
-	    $api_key		= "2KBHK7QsyCry40kURtkWDODDfdro4oBb";
+	    //Dev Key:
+	    /* $api_key		= "2KBHK7QsyCry40kURtkWDODDfdro4oBb"; */
 
-	    // Live Key:
-	    // $api_key		= "msVXO9a8a2BLUQIbRiRFnrNbTijcQXeH";
+	    //Live Key:
+	    $api_key		= "msVXO9a8a2BLUQIbRiRFnrNbTijcQXeH";
 
 	    // Set your secret key: remember to change this to your live secret key
 	    // in production
