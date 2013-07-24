@@ -63,12 +63,12 @@ class Order extends CI_Controller {
     function cont( ) {
 	if( ! isset( $_POST[ 'stripetoken' ] ) ){
 	    $data[ 'query' ]		= $this->Order->get_inventory();
-
+	    
 	    //Dev Key:
-	    $api_key		= "sk_test_S95Wl40z76CwrkDXFPgSE23v";
+	    /* $api_key		= "2KBHK7QsyCry40kURtkWDODDfdro4oBb"; */
 
 	    //Live Key:
-	    //$api_key		= "sk_live_72IHAofr91oYTybfcIb3SUfo";
+	    $api_key		= "msVXO9a8a2BLUQIbRiRFnrNbTijcQXeH";
 
 	    // Set your secret key: remember to change this to your live secret key
 	    // in production
