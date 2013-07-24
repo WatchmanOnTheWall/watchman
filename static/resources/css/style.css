@@ -159,7 +159,6 @@
 }
 #container .container_middle .content a.readon,
 #container .container_middle .content #checkout-button{
-  float: right;
   margin-right: 30px;
   padding: 6px 15px 7px;
   border-top: solid 1px #F9ECD4;
@@ -178,6 +177,7 @@
   text-shadow: 0 -1px 2px #FFF;
   font-size: 12px;
   font-weight: bold;
+  cursor: pointer;
 }
 #container .container_middle .content a.readon:hover,
 #container .container_middle .content #checkout-button:hover{
@@ -478,9 +478,14 @@ p {
 b, strong {
   font-weight: bold;
 }
+
 img.image {
   margin: 25px 30px;
   box-shadow: 0 0 20px 0 #000;
+}
+
+.small {
+  font-size: 14px;
 }
 
 .buttonheading a {
@@ -525,6 +530,10 @@ img.image {
 
 .blog_more div {
   margin-bottom: 14px;
+}
+
+.pull-left {
+  float: left;
 }
 
 .createdate {
@@ -837,6 +846,17 @@ dl.definition dd {
 /*----------------------------------------
   Order Form
 ----------------------------------------*/
+form .order {
+  float: left;
+  margin-left: 40px;
+}
+
+form .order span {
+  display: inline-block;
+  width: 100px;
+  padding-right: 20px;
+}
+
 form .order input[type="text"] {
   width: 200px;
 }
@@ -844,4 +864,38 @@ form .order input[type="text"] {
 .validate-alert {
   margin: 10px 0;
   color: red;
+}
+
+.shipping {
+  margin-left: 40px;
+}
+
+.shipping-table {
+  border-collapse: collapse;
+  float: left;
+}
+
+.shipping-table td, .shipping-table th {
+  border: 1px solid black;
+  width: 150px;
+  padding: 10px;
+  text-align: center;
+}
+
+.shipping-table tr:first-child th {
+  border-top: 0;
+}
+
+.shipping-table tr:last-child td {
+  border-bottom: 0;
+}
+
+.shipping-table tr td:first-child,
+.shipping-table tr th:first-child {
+  border-left: 0;
+}
+
+.shipping-table tr td:last-child,
+.shipping-table tr th:last-child {
+  border-right: 0;
 }

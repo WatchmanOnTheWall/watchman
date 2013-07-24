@@ -84,7 +84,7 @@ function build_row( data )
         .html( "$"+data.price )
         .addClass( 'hidden' )
     , buy_info		= $( '<p />' )
-        .html( data.info )
+        .html( ( data.info === null ) ? '$'+data.price+'.00 + Shipping and Handling' :data.info  )
     , checkbox		= $( '<input />' )
         .attr({
             'type': 'checkbox',
@@ -177,6 +177,23 @@ $('#checkout-button').click(function(){
         var price		= parseInt( price, 10 );
         total += price;
     });
+
+    // Figure out shipping cost
+    if ( total <= 15 ) {
+	var shipping		= 5;
+    }
+    else if ( total > 15 && total <= 35 ) {
+	var shipping		= 9;
+    }
+    else if ( total > 35 && total <= 80 ){
+	var shipping		= 15;
+    }
+    else if ( total > 80 ) {
+	var shipping		= 0;
+    }
+
+    total			= total + shipping;
+    
     $( '.amount' ).val( total );
     
     console.log([ "Total: ", total ]);

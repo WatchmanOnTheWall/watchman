@@ -46,10 +46,23 @@
                                             </div>
                                         </div>
                                         <?php endif ?>
-                                        <div class="order text-right">
+                                        <div class="order pull-left">
+                                            <h2>Contact</h2>
+                                            <div>
+                                                <span>First Name: </span>
+                                                <input type="text" name="first_name" />
+                                            </div> 
+                                            <div>
+                                                <span>Last Name: </span>
+                                                <input type="text" name="last_name" />
+                                            </div> 
+                                            <div>
+                                                <span>Email Address: </span>
+                                                <input type="text" name="email" />
+                                            </div> 
                                             <h2>Shipping Address</h2>
                                             <div>
-                                                <label>Country: </label>
+                                                <span>Country: </span>
                                                 <select name="country">
                                                     <option disabled="disabled" selected="selected">
                                                         Select a country
@@ -74,41 +87,54 @@
                                                 </select>
                                             </div> 
                                             <div> 
-                                                <label>Province / State: </label>
+                                                <span>Province / State: </span>
                                                 <input type="text" name="region" />
                                             </div> 
                                             <div> 
-                                                <label>City: </label>
+                                                <span>City: </span>
                                                 <input type="text" name="city" />
                                             </div> 
                                             <div> 
-                                                <label>Street: </label>
+                                                <span>Street: </span>
                                                 <input type="text" name="street" />
                                             </div> 
                                             <div> 
-                                                <label>Postal Code: </label>
+                                                <span>Postal Code: </span>
                                                 <input type="text" name="code" />
                                             </div>
                                             <br />
-                                            <h2>Contact</h2>
-                                            <div>
-                                                <label>First Name: </label>
-                                                <input type="text" name="first_name" />
-                                            </div> 
-                                            <div>
-                                                <label>Last Name: </label>
-                                                <input type="text" name="last_name" />
-                                            </div> 
-                                            <div>
-                                                <label>Email Address: </label>
-                                                <input type="text" name="email" />
-                                            </div> 
                                             <div class="validate-alert"></div>
+                                            <input type="button" id="checkout-button"
+                                                   value="Purchase" style="margin: 10px 0 17px;"/>
                                         </div>
-                                        <input type="hidden" name="amount"
-                                               class="amount" />
-                                        <input type="button" id="checkout-button"
-                                               value="Purchase" style="margin: 10px 0 17px;"/>
+                                            <input type="hidden" name="amount"
+                                                   class="amount" />
+                                        <div class="shipping pull-left">
+                                            <h2>Shipping Costs</h2>
+                                            <table class="shipping-table" border="1">
+                                                <tr>
+                                                    <th><b>Order Amount</b></th>
+                                                    <th><b>Shipping Price</b></th>
+                                                </tr>
+                                                <tr>
+                                                    <td>0 - $15.00</td>
+                                                    <td>$5</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>$15.01 - $35.00</td>
+                                                    <td>$9</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>$35.01 - $80.00</td>
+                                                    <td>$15</td>
+                                                </tr>
+                                                <tr>
+                                                    <td> $80.01 and over </td>
+                                                    <td> free </td>
+                                                </tr>
+                                            </table>
+                                            
+                                        </div>
                                     </div>
                                 </form>
                                 

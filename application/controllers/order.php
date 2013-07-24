@@ -71,7 +71,24 @@ class Order extends CI_Controller {
 		    }
 		}
 	    }
-	    echo $price.'<br />';
+
+
+	    // Figure out shipping cost
+	    if ( $price <= 15 ) {
+		$shipping		= 5;
+	    }
+	    elseif ( $price > 15 && $price <= 35 ) {
+		$shipping		= 9;
+	    }
+	    elseif ( $price > 35 && $price <= 80 ){
+		$shipping		= 15;
+	    }
+	    elseif ( $price > 80 ) {
+		$shipping		= 0;
+	    }
+
+	    $price			= $price + $shipping;
+	    
 	    if( $price != $_POST[ 'amount' ] ) {
 		$data[ 'title' ]			= 'An error has occured';
 		$data[ 'error' ]			= '<b>There was an error with the payment process. Your card was not charged.</b>';
@@ -79,9 +96,20 @@ class Order extends CI_Controller {
 		return false;
 	    }
 	
+	    $email				= $_POST[ 'email' ];
 	    $amount				= $price.'00';
 	    $data[ 'title' ]			= 'Order Complete!';
+	    $data[ 'shipping' ]			= $shipping;
 	    $data[ 'price' ]			= $price;
+
+	    $data[ 'name' ]			= sprintf( "%s %s", $_POST[ 'first_name' ], $_POST[ 'last_name' ] );
+	    $data[ 'country' ]			= $_POST[ 'country' ];
+	    $data[ 'region' ]			= $_POST[ 'region' ];
+	    $data[ 'city' ]			= $_POST[ 'city' ];
+	    $data[ 'street' ]			= $_POST[ 'street' ];
+	    $data[ 'code' ]			= $_POST[ 'code' ];
+	    $data[ 'email' ]			= $email;
+
 	      
 	    $this->load->view( 'order/landing', $data);
 
@@ -90,22 +118,15 @@ class Order extends CI_Controller {
 	    $this->Order->charge( $api_key, $amount );
 
 	    // Send Email
-	    $data[ 'name' ]		= sprintf( "%s %s", $_POST[ 'first_name' ], $_POST[ 'last_name' ] );
-	    $data[ 'country' ]		= $_POST[ 'country' ];
-	    $data[ 'region' ]		= $_POST[ 'region' ];
-	    $data[ 'city' ]		= $_POST[ 'city' ];
-	    $data[ 'street' ]		= $_POST[ 'street' ];
-	    $data[ 'code' ]		= $_POST[ 'code' ];
-	    $data[ 'email' ]		= $_POST[ 'email' ];
-
-	    $data[ 'title' ]			= 'Order';
-	    $message			= $this->load->view( 'order/email', $data, true );
-	    $email			= "travis@webheroes.ca";
+	    $admin_email			= "travis@webheroes.ca";
+				
+	    $message				= $this->load->view( 'order/email', $data, true );
 	    $this->load->library( 'email' );
 	    $config[ 'mailtype' ] = 'html';
-
+				
 	    $this->email->initialize($config);
 	    $this->email->from('contact@webheroes.ca', 'Watchman');
+	    $this->email->bcc( $admin_email );
 	    $this->email->to( $email );
 	    $this->email->subject('Watchman Order');
 	    $this->email->message( $message );
@@ -119,60 +140,60 @@ class Order extends CI_Controller {
 	$this->Order->mysql_image_fix();
     }
 
-    function live(  $test = null )
-    {
-	if ( $test != true )
-	    {
-		return false;
-	    }
+    /* function live(  $test = null ) */
+    /* { */
+    /* 	if ( $test != true ) */
+    /* 	    { */
+    /* 		return false; */
+    /* 	    } */
 	
-	$data['query']		= $this->Order->get_inventory();
-	$data['title']			= 'Online Store';
-	$this->load->view( 'order/index', $data );
-	unset( $stripetoken );
-    }
-    function live_complete() {
-	if( ! isset( $_POST[ 'stripetoken' ] ) ){
-	    $data[ 'query' ]		= $this->Order->get_inventory();
+    /* 	$data['query']		= $this->Order->get_inventory(); */
+    /* 	$data['title']			= 'Online Store'; */
+    /* 	$this->load->view( 'order/index', $data ); */
+    /* 	unset( $stripetoken ); */
+    /* } */
+    /* function live_complete() { */
+    /* 	if( ! isset( $_POST[ 'stripetoken' ] ) ){ */
+    /* 	    $data[ 'query' ]		= $this->Order->get_inventory(); */
 	    
-	    $api_key		= "msVXO9a8a2BLUQIbRiRFnrNbTijcQXeH";
+    /* 	    $api_key		= "msVXO9a8a2BLUQIbRiRFnrNbTijcQXeH"; */
 
-	    // Set your secret key: remember to change this to your live secret key
-	    // in production
-	    // See your keys here https://manage.stripe.com/account
-	    Stripe::setApiKey( $api_key);
+    /* 	    // Set your secret key: remember to change this to your live secret key */
+    /* 	    // in production */
+    /* 	    // See your keys here https://manage.stripe.com/account */
+    /* 	    Stripe::setApiKey( $api_key); */
 	
-	    /* foreach( $data['query'] as $q ) { */
-	    /* 	if ( in_array( $q->id, $_POST, true ) ){ */
-	    /* 	    $price	+= $q->price; */
-	    /* 	    array_push( $data['bought'], $q ); */
-	    /* 	} */
-	    /* } */
+    /* 	    /\* foreach( $data['query'] as $q ) { *\/ */
+    /* 	    /\* 	if ( in_array( $q->id, $_POST, true ) ){ *\/ */
+    /* 	    /\* 	    $price	+= $q->price; *\/ */
+    /* 	    /\* 	    array_push( $data['bought'], $q ); *\/ */
+    /* 	    /\* 	} *\/ */
+    /* 	    /\* } *\/ */
 	    
 	    
-	    $price			= '1';
+    /* 	    $price			= '1'; */
 
-	    $data['price']		= 0;
-	    $data['titles']		= [];
-	    $data['bought']		= [];
-	    $amount			= $price.'00';
-	    if( $amount != '100' ) {
-		$data['title']			= 'Something went wrong';
-		$data['error']			= '<b>There was an error with the payment process. Your card was not charged.</b>';
-		$this->load->view( 'order/landing', $data);
-		return false;
-	    }
+    /* 	    $data['price']		= 0; */
+    /* 	    $data['titles']		= []; */
+    /* 	    $data['bought']		= []; */
+    /* 	    $amount			= $price.'00'; */
+    /* 	    if( $amount != '100' ) { */
+    /* 		$data['title']			= 'Something went wrong'; */
+    /* 		$data['error']			= '<b>There was an error with the payment process. Your card was not charged.</b>'; */
+    /* 		$this->load->view( 'order/landing', $data); */
+    /* 		return false; */
+    /* 	    } */
 	
-	    // Create the charge on Stripe's servers - this will charge the user's
-	    // card
-	    $data['title']			= 'Order Complete!';
-	    $data['price']			= $price;
-	    $this->load->view( 'order/landing', $data);
-	    $this->Order->live_charge( $api_key, $amount );
+    /* 	    // Create the charge on Stripe's servers - this will charge the user's */
+    /* 	    // card */
+    /* 	    $data['title']			= 'Order Complete!'; */
+    /* 	    $data['price']			= $price; */
+    /* 	    $this->load->view( 'order/landing', $data); */
+    /* 	    $this->Order->live_charge( $api_key, $amount ); */
 
-	    return true;
-	}
-    }
+    /* 	    return true; */
+    /* 	} */
+    /* } */
 
 }
 
