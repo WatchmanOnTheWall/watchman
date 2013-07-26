@@ -20,13 +20,39 @@
             <b>Postal Code:</b>
             <?php printf( "%s", $code ) ?>
         </p>
-        <dl class="definition">
-            <dt><b>Items Purchased:</b></dt>
-            <?php foreach( $bought as $b ){
-                    printf( '<dd> %s ( $%s.00 ) </dd>', $b->title, $b->price );
-                    }
-                ?>
-        </dl>
+        <p>
+            <b>Items Purchased:</b>
+        <table class="definition" cellpadding="10px">
+            <?php foreach( $bought as $b ):
+     		if ( $sale_on
+		     && isset( $b->sale_price )
+		     && $b->sale_price != '') {
+		    $p		= $b->sale_price;
+		}
+		else{
+		    $p		= $b->price;
+		}
+	    ?>		
+            <tr>
+                <td>
+                    <?php echo $b->title ?>
+                </td>
+                <td>
+                    <?php echo $b->medium ?>
+                </td>
+                <td>
+                    $<?php echo $p ?>.00
+                </td>
+            </tr>
+            <?php
+ 		endforeach;
+	    ?>
+        </table>
+        </p>
+        <p>
+            <b>Shipping Cost:</b>
+            <?php printf( "$%s.00", $shipping ) ?>
+        </p>
         <p>
             <b>Amount Payed:</b>
             <span><?php echo

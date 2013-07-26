@@ -1,7 +1,8 @@
 <ul class="rslides">
     <?php
      foreach( scandir( BASEPATH."resources/images/covers/" ) as $cover ){
-     if ( substr( $cover , -4 ) == ".jpg" ) {
+     if ( substr( $cover , -4 ) == ".jpg"
+	  && $cover !== "no-image.jpg" ) {
 	 $covers[]		= $cover;
      }
     }

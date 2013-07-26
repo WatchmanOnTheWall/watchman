@@ -1,3 +1,4 @@
+<?php $active = 'order' ?>
 <!DOCTYPE html>
 <html>
     
@@ -19,7 +20,7 @@
                     <div class="padding">
                         
                         <!-- Main Content -->
-                        <div class="content full" style="height: auto;">
+                        <div class="content full">
                             <div class="padding">
                                 <h1><?php echo $title ?></h1>
                                 <div class="payment-info">
@@ -27,27 +28,11 @@
      					echo $error;
  					else:
 				          ?>
-                                    <h2>Thankyou for your order, an email was
-                                        sent to <?php echo $email ?></h2>
-                                <p>
+                                    <p>Thankyou for your order, an email has
+                                        been sent to <b><?php echo $email ?></b>.</p>
                                     If you have any questions, please feel free email us at contact@watchman.ca.
-                                </p>
-                                    <dl class="definition">
-                                        <dt>Items Purchased:</dt>
-                                        <?php foreach( $bought as $b ){
-     					    printf( '<dd> %s ( $%s.00 ) </dd>', $b->title, $b->price );
-     					    }
-					?>
-                                        <dt> Amount Payed: <span><?php echo
-     					    '$'. $price.'.00' ?></span>
-                                            <span class="small">
-                                                (<?php echo
-					       	'$'. $shipping.'.00'?> Shipping and handling)
-                                            </span>
-                                        </dt>
-                                    </dl>
+                                    </p>
                                     <?php endif; ?>
-
                                 </div>
                             </div>
                         </div>

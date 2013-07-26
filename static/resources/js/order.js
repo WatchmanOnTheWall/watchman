@@ -5,25 +5,6 @@ var nocontent			= $('<div />')
 for( var i=0; i<inventory.length; i++ ) {
     var data = inventory[i];
 
-    //                console.log([ "Building row for data:", data
-    //                ]);
-
-    function under_construction( name, data )
-    {
-        if( data.medium == name ){
-            $('#'+name+' .inv').append(
-                build_row( data )
-            )
-            return true;
-        }
-        $( '#'+name+' .inv' ).html(
-            '<h2>Under Construction</h2>'
-        )
-        return false;
-    }
-
-    // under_construction( 'audio', data )
-    
     if( data.medium == 'audio' ){
         $('#audio .inv').append(
             build_row( data )
@@ -54,11 +35,9 @@ function build_header( header )
 
 function build_row( data )
 {
-    
     var item		= $( '<div />' )
         .addClass( 'row' )
         .attr( 'id', data.id )
-    
     , id			= $( '<div />' )
         .html( data.id )
         .addClass('hidden')
@@ -67,10 +46,9 @@ function build_row( data )
     , img_link		= $( '<a />' )
         .addClass( 'no-padding, span12' )
         .attr({
-            'href': '/resources/images/covers/'+data.image
+            'href': '/resources/images/covers/' + data.image
         })
         .css( 'background', ' url( "/resources/images/covers/'+data.image+ '") no-repeat')
-    
     , info			= $( '<span />' )
         .addClass('info')
     , title			= $( '<h2 />' )
@@ -80,12 +58,21 @@ function build_row( data )
         .attr({
             'href': '/order/item/'+data.id
         })
-    , price			= $( '<span />' )
-        .html( "$"+data.price )
-        .addClass( 'hidden' )
-    , buy_info		= $( '<p />' )
-        .html( ( data.info === null ) ? '$'+data.price+'.00 + Shipping and Handling' :data.info  )
-    , checkbox		= $( '<input />' )
+    , sale_price			= $( '<span />' )
+        .addClass( 'sale' )
+        .html( 'On Sale! $' + data.sale_price + '.00 + Shipping and Handling' )
+    , price			= $( '<div />' )
+        .html( ( data.sale_price !== null
+                 && sale === 1 )
+               ? sale_price
+               : '$' + data.price+'.00 + Shipping and Handling'
+             )
+    , buy_info		= $( '<div />' )
+        .html( ( data.info !== null )
+    	       ? data.info
+               : ''
+             )
+    , checkbox = $( '<input />' )
         .attr({
             'type': 'checkbox',
             'name': 'id_' + data.id,
@@ -105,13 +92,12 @@ function build_row( data )
             img_link
         ),
         info.append(
-            link.append(
+            link.append (
                 title
             ),
-            buy_info
-            // text
-        ),
-        price
+            buy_info,
+            price
+        )
     )
     return item
 }
@@ -152,13 +138,17 @@ $("input.wanted").click(
 
             console.log( "checked", checked );
 
+            $( this ).closest( '.row' ).addClass( 'active' );
+
             return;
         }
+
+        $( this ).closest( '.row' ).removeClass( 'active' );
         
         checked		= $.grep( checked, function( a ){
             return a != value;
         });
-
+        
         console.log( "checked", checked );
     }
 );
@@ -173,7 +163,10 @@ $('#checkout-button').click(function(){
     var total			= 0;
     
     $( '.wanted:checked' ).each( function() {
-        var price		= $.parseJSON( $( this ).attr('row-data') ).price;
+        var row_data		= $.parseJSON( $( this ).attr('row-data') )
+        var price		= ( row_data.sale_price !== null && sale === 1 )
+            ? row_data.sale_price
+            : row_data.price;
         var price		= parseInt( price, 10 );
         total += price;
     });
@@ -207,11 +200,12 @@ $('#checkout-button').click(function(){
     };
 
     StripeCheckout.open({
-        key:         'pk_yLFjPSiZOODGvjlBquqqNpcfqo2Fa',
+
+        //Dev Key:
+        key:         'pk_test_rmo8R31SMUZkbyv2TTU7osQz',
 
         //Live Key:
-        //key:         'pk_UyniFUBW5FwmyFDfbiNxWdVEOSuTP',
-        //address:     true,
+        // key:         'pk_live_MVBbOnmTzVS8jQrYQ8Xjl3oN',
         amount:      total + '00',
         name:        'Checkout',
         description: function() {

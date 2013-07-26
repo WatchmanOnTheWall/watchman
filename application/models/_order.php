@@ -10,7 +10,7 @@ class _order extends CI_Model {
 
     function get_inventory( $medium = null ) {
 	if ( $medium == null ){
-	    $query		= $this->db->get('inventory');
+	    $query		= $this->db->get_where( 'inventory', array( 'for_sale' => '1' ) );
 	    $result		= $query->result();
 	    return $result;
 	}
@@ -42,40 +42,16 @@ class _order extends CI_Model {
 	// Create the charge on Stripe's servers - this will charge the user's
 	// card
 	try {
-	    $charge = Stripe_Charge::create(array(
-						  "amount" => $amount,
-						  "currency" => "cad",
-						  "card" => $token,
-						  "description" => "payinguser@example.com")
+	    $charge = Stripe_Charge::create( array(
+						   "amount" => $amount,
+						   "currency" => "cad",
+						   "card" => $token,
+						   "description" => "payinguser@example.com")
 					    );
 	} catch(Stripe_CardError $e) {
 	    // The card has been declined
 	}
     }
-    
-    function live_charge( $api_key, $amount ) {
-
-	// Set your secret key: remember to change this to your live secret key
-	// in production
-	// See your keys here https://manage.stripe.com/account
-	Stripe::setApiKey( $api_key);
-	
-	// Get the credit card details submitted by the form
-	$token = $_POST['stripeToken'];
-	// Create the charge on Stripe's servers - this will charge the user's
-	// card
-	try {
-	    $charge = Stripe_Charge::create(array(
-						  "amount" => $amount,
-						  "currency" => "cad",
-						  "card" => $token,
-						  "description" => "payinguser@example.com")
-					    );
-	} catch(Stripe_CardError $e) {
-	    // The card has been declined
-	}
-    }
-
     //
     // Changes image tags to just get the
     function mysql_image_fix( $var = null ) {
@@ -139,6 +115,19 @@ class _order extends CI_Model {
     				    "customer" => $customerId)
 			      );
     }
+
+    function sale_on()
+    {
+	$query = $this->db->get('sale');
+	$result = $query->result();
+	$result = $result[0]->sale_on;
+
+	if ( $result ) {
+	    return true;
+	}
+	return false;
+    }
+    
 }
 
 ?>
