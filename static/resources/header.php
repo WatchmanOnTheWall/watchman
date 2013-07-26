@@ -1,15 +1,14 @@
 <?php
-    if( ! isset( $active ) ) {
-	//	$active		= null;
+    if ( empty( $active ) ) {
+	$active = null;
     }
-
-    function active( $tab ) {
-	global $active;
+    
+function active( $tab, $active ) {
 	if ( $active == $tab ) {
 	    echo 'class="active"';
 	}
     }
-?>
+     ?>
 <div class="header">
     <div class="tabs">
         <div class="tab facebook">
@@ -25,23 +24,23 @@
 </div>
 <div class="top_menu">
     <ul class="menu">
-        <li <?php active( 'home' ) ?> > 
+    <li <?php active( 'home', $active ) ?> > 
             <a href="/index.php">
                 <span>Home
                 </span>
             </a>
         </li>
-        <li <?php active( 'about' )  ?> > 
+    <li <?php active( 'about', $active )  ?> > 
             <a href="/about.php">
                 <span>About</span>
             </a>
         </li>
-	<li <?php active( 'travel-schedule' )  ?> > 
+    <li <?php active( 'travel-schedule', $active )  ?> > 
             <a href="/travel-schedule.php">
                 <span>Travel Schedule</span>
             </a>
         </li>
-	<li <?php active( 'media' )  ?> > 
+    <li <?php active( 'media', $active )  ?> > 
             <a href="#">
                 <span>Media</span>
             </a>
@@ -63,22 +62,22 @@
                 <!-- </li> -->
             </ul>
         </li>
-	<li <?php active( 'order' )  ?> > 
+    <li <?php active( 'order', $active )  ?> > 
             <a href="/order/">
                 <span>Online Store</span>
             </a>
         </li>
-	<li <?php active( 'links' )  ?> > 
+	<li <?php active( 'links', $active )  ?> > 
             <a href="/links.php">
                 <span>Links</span>
             </a>
         </li>
-	<li <?php active( 'partners' )  ?> > 
+	<li <?php active( 'partners', $active )  ?> > 
             <a href="/partners.php">
                 <span>Partners</span>
             </a>
         </li>
-	<li <?php active( 'contact' )  ?> > 
+	<li <?php active( 'contact', $active )  ?> > 
             <a href="/contact.php">
                 <span>Contact</span>
             </a>

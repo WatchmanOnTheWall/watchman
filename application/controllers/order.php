@@ -8,51 +8,67 @@ class Order extends CI_Controller {
 	$this->load->model( '_order', 'Order', true );
 	$this->load->library( 'session' );
 	include( FCPATH.'stripe-php-1.7.15/lib/Stripe.php'  );
-	
+	$this->sale_on			= $this->Order->sale_on();
     }
+
     
     function index()
     {
-	$data['query']		= $this->Order->get_inventory();
-	$data['title']			= 'Online Store';
-	$data['audio']		= false;
-	$data['video']		= false;
-	$data['book']		= false;
-	$data['country']	= $this->Order->get_countries();
-	
-	foreach( $data['query'] as $q ){
+	$query				= $this->Order->get_inventory();
+	$data[ 'title' ]		= 'Online Store';
+	$data[ 'audio' ]		= false;
+	$data[ 'video' ]		= false;
+	$data[ 'book' ]			= false;
+	$data[ 'country' ]		= $this->Order->get_countries();
+	$data[ 'sale_on' ]		= $this->sale_on;
+	$data[ 'query' ]		= $query;
+
+	foreach( $data[ 'query' ] as $q ){
+
+	    $q->image = ( file_exists( FCPATH.'static/resources/images/covers/' . $q->image ) )
+		? $q->image
+		: 'no-image.jpg';
+
 	    if ( $q->medium == 'audio' ) {
-		$data['audio']	= true;
+		$data[ 'audio' ]	= true;
 	    }
+	    
 	    elseif ( $q->medium == 'video' ) {
-		$data['video']	= true;
+		$data[ 'video' ]	= true;
 	    }
+	    
 	    elseif ( $q->medium == 'book' ) {
-		$data['book']	= true;
+		$data[ 'book' ]	= true;
 	    }
 	}
 	
 	$this->load->view( 'order/index', $data );
 	unset( $stripetoken );
     }
+    
     function item( $id ) {
 	if ( $id == null ){
 	    redirect( base_url().'order' );
 	}
 	$data = $this->Order->get_item( $id )[0];
-
 	
+	$data->image = ( file_exists( FCPATH.'static/resources/images/covers/' . $data->image ) )
+	    ? $data->image
+	    : 'no-image.jpg';
+
 	$this->load->view( 'order/item', $data );
     }
-    function complete() {
+    
+    
+    function cont( ) {
 	if( ! isset( $_POST[ 'stripetoken' ] ) ){
 	    $data[ 'query' ]		= $this->Order->get_inventory();
-	    
+
 	    //Dev Key:
-	    /* $api_key		= "2KBHK7QsyCry40kURtkWDODDfdro4oBb"; */
+	    $api_key		= "sk_test_S95Wl40z76CwrkDXFPgSE23v";
 
 	    //Live Key:
-	    $api_key		= "msVXO9a8a2BLUQIbRiRFnrNbTijcQXeH";
+	    //$api_key		= "sk_live_72IHAofr91oYTybfcIb3SUfo";
 
 	    // Set your secret key: remember to change this to your live secret key
 	    // in production
@@ -63,43 +79,47 @@ class Order extends CI_Controller {
 	    $data[ 'price' ]		= 0;
 	    $data[ 'titles' ]		= [];
 	    $data[ 'bought' ]		= [];
+	    $data[ 'sale_on' ]		= $this->sale_on;
 
 	    foreach( $data[ 'query' ] as $key => $val ) {
-		foreach( $_POST as $Pk => $Pv ){
-		    if ( $Pk == 'id_'.$val->id ) {
-			$price	+= $val->price;
-			array_push( $data[ 'bought' ], $val );
-		    }
-		}
+	    	foreach( $_POST as $Pk => $Pv ){
+	    	    if ( $Pk == 'id_'.$val->id ) {
+			$to_add		= ( $this->sale_on
+					    && isset( $val->sale_price )
+					    && $val->sale_price !== '' )
+			    ? $val->sale_price
+			    : $val->price;
+	    		$price	+= $to_add;
+	    		array_push( $data[ 'bought' ], $val );
+	    	    }
+	    	}
 	    }
-
 
 	    // Figure out shipping cost
 	    if ( $price <= 15 ) {
-		$shipping		= 5;
+	    	$shipping		= 5;
 	    }
 	    elseif ( $price > 15 && $price <= 35 ) {
-		$shipping		= 9;
+	    	$shipping		= 9;
 	    }
 	    elseif ( $price > 35 && $price <= 80 ){
-		$shipping		= 15;
+	    	$shipping		= 15;
 	    }
 	    elseif ( $price > 80 ) {
-		$shipping		= 0;
+	    	$shipping		= 0;
 	    }
 
 	    $price			= $price + $shipping;
 	    
 	    if( $price != $_POST[ 'amount' ] ) {
-		$data[ 'title' ]			= 'An error has occured';
-		$data[ 'error' ]			= '<b>There was an error with the payment process. Your card was not charged.</b>';
-		$this->load->view( 'order/landing', $data);
-		return false;
+	    	$data[ 'title' ]			= 'An error has occured';
+	    	$data[ 'error' ]			= '<b>There was an error with the payment process. Your card was not charged.</b>';
+	    	$this->load->view( 'order/landing', $data);
+	    	return false;
 	    }
 	
 	    $email				= $_POST[ 'email' ];
 	    $amount				= $price.'00';
-	    $data[ 'title' ]			= 'Order Complete!';
 	    $data[ 'shipping' ]			= $shipping;
 	    $data[ 'price' ]			= $price;
 
@@ -112,8 +132,6 @@ class Order extends CI_Controller {
 	    $data[ 'email' ]			= $email;
 
 	      
-	    $this->load->view( 'order/landing', $data);
-
 	    // Create the charge on Stripe's servers - this will charge the user's
 	    // card
 	    $this->Order->charge( $api_key, $amount );
@@ -122,6 +140,7 @@ class Order extends CI_Controller {
 	    $admin_email			= "travis@webheroes.ca";
 				
 	    $message				= $this->load->view( 'order/email', $data, true );
+	    $this->load->view( 'order/email', $data );
 	    $this->load->library( 'email' );
 	    $config[ 'mailtype' ] = 'html';
 				
@@ -133,10 +152,19 @@ class Order extends CI_Controller {
 	    $this->email->message( $message );
 	    $this->email->send();
 
+	    redirect( base_url().'order/complete/'.urlencode( $email ) );
 	    return true;
 	}
     }
-    
+    function complete( $email = null ){
+	if ( empty( $email ) ) {
+	    redirect( base_url().'order' );
+	}
+	$data['email']			= urldecode( $email );
+	$data['active']			= 'order';
+	$data[ 'title' ]		= 'Order Complete!';
+	$this->load->view( 'order/landing', $data);
+    }
     function fix(){
 	$this->Order->mysql_image_fix();
     }

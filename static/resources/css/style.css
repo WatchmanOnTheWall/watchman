@@ -440,6 +440,12 @@ h5 {
   margin: 3px 0 4px 0;
   font-size: 14px;
 }
+hr.break {
+  display: block;
+  float: left;
+  width: 100%;
+  margin: 10px 0 40px;
+}
 .indent {
   margin: 0 0 20px 0;
   padding: 0 20px;
@@ -558,12 +564,21 @@ img.image {
   padding: 2%;
 }
 
+.inv .row.active {
+  background: rgba(255, 206, 157, 0.41);
+}
+
 .inv .info {
   display: inline-block;
   position: relative;
   width: 280px;
-  padding: 10px;
+  padding: 5px 0 0 0;
   vertical-align: top;
+}
+
+.inv .info div {
+  padding-left: 10px;
+  margin-bottom: 3px;
 }
 
 .inv .want-box {
@@ -576,8 +591,8 @@ img.image {
 }
 
 .inv .cover {
-  height: 82.5px !important;
-  width: 56.25px !important;
+  height: 83px !important;
+  width: 57px !important;
   margin: 0 10px;
   background-size: cover;
   overflow: hidden;
@@ -586,7 +601,7 @@ img.image {
 
 .inv .cover a {
   height: 100%;
-  background-size: cover !important;
+  background-size: 57px 83px !important;
   box-sizing: border-box;
 }
 
@@ -848,7 +863,9 @@ dl.definition dd {
 ----------------------------------------*/
 form .order {
   float: left;
-  margin-left: 40px;
+  padding: 0 60px;
+  border-right: 1px solid #B9B9B9;
+  margin-bottom: 20px;
 }
 
 form .order span {
@@ -857,12 +874,17 @@ form .order span {
   padding-right: 20px;
 }
 
-form .order input[type="text"] {
+form .order input[type="text"],
+form .order select {
   width: 200px;
 }
 
 .validate-alert {
   margin: 10px 0;
+  color: red;
+}
+
+.sale {
   color: red;
 }
 
@@ -876,7 +898,7 @@ form .order input[type="text"] {
 }
 
 .shipping-table td, .shipping-table th {
-  border: 1px solid black;
+  border: 1px solid #B9B9B9;
   width: 150px;
   padding: 10px;
   text-align: center;
@@ -893,9 +915,11 @@ form .order input[type="text"] {
 .shipping-table tr td:first-child,
 .shipping-table tr th:first-child {
   border-left: 0;
+  border-right: 0;
 }
 
 .shipping-table tr td:last-child,
 .shipping-table tr th:last-child {
   border-right: 0;
+  border-left: 0;
 }

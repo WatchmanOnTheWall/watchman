@@ -1,8 +1,10 @@
+<?php $active = 'order'; ?>
 <!DOCTYPE html>
 <html>
     <!-- Head Tag -->
-    
-    <?php include FCPATH.'static/resources/head.php' ?>
+    <?php
+	include FCPATH.'static/resources/head.php';
+	?>
     
     <body>
         <div class="body">
@@ -10,7 +12,9 @@
                 
                 <!-- Start Container Top -->
                 <div class="container_top">
-                    <?php include FCPATH.'static/resources/header.php' ?>
+                    <?php
+			include FCPATH.'static/resources/header.php';
+	                 ?>
                 </div>
                 <!-- Stop Container Top -->
                 
@@ -23,7 +27,7 @@
                             <div class="padding">
                                 <h1><?php echo $title
 				?></h1>
-                                <form action="/order/complete" method="POST">
+                                <form action="/order/cont" method="POST">
                                     <div class="padding">
                                         <?php if ( $book ): ?>
                                         <div id="books">
@@ -46,6 +50,7 @@
                                             </div>
                                         </div>
                                         <?php endif ?>
+                                        <hr class="break" />
                                         <div class="order pull-left">
                                             <h2>Contact</h2>
                                             <div>
@@ -59,7 +64,8 @@
                                             <div>
                                                 <span>Email Address: </span>
                                                 <input type="text" name="email" />
-                                            </div> 
+                                            </div>
+                                            <br />
                                             <h2>Shipping Address</h2>
                                             <div>
                                                 <span>Country: </span>
@@ -166,6 +172,7 @@
         <script src="https://checkout.stripe.com/v2/checkout.js"></script>
         <script type="text/javascript">
             var inventory			= <?php echo json_encode( $query ) ?>;
+            var sale				= <?php echo $sale_on ?>;
         </script>
         <script src="/resources/js/order.js"></script>
 
