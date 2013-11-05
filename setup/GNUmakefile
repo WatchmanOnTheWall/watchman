@@ -1,9 +1,10 @@
 
-.PHONY:	all FORCE clean
+.PHONY:	all FORCE clean site_config
 
 config			= ../application/config/config.php
 database		= ../application/config/database.php
 index			= ../index.php
+apache_conf		= /etc/apache2/sites-available/watchman.conf
 
 all:	$(index) $(config) $(database)
 
@@ -15,6 +16,11 @@ $(database):	database.php
 
 $(index):	index.php
 	cp $< $@
+
+site_config:	$(apache_conf)
+
+$(apache_conf):	watchman.conf
+	sudo cp $< $@
 
 clean:
 	rm $(index)
