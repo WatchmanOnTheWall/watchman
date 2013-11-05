@@ -49,9 +49,9 @@ $active_group = 'default';
 $active_record = TRUE;
 
 $db['default']['hostname'] = 'localhost';
-$db['default']['username'] = 'root';
-$db['default']['password'] = 'WHpwec15';
-$db['default']['database'] = 'dev-watchman';
+$db['default']['username'] = 'dev_watchman';
+$db['default']['password'] = 'testing';
+$db['default']['database'] = 'dev_watchman';
 $db['default']['dbdriver'] = 'mysql';
 $db['default']['dbprefix'] = '';
 $db['default']['pconnect'] = TRUE;
