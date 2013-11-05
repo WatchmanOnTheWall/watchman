@@ -1,4 +1,5 @@
-application/config/config.php
-application/config/database.php
-application/logs/
-.htaccess
+/.*
+/index.php
+/application/logs/
+/application/config/config.php
+/application/config/database.php

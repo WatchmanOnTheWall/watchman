@@ -201,14 +201,12 @@ $('#checkout-button').click(function(){
 
     StripeCheckout.open({
         //Dev Key:
-        key:         'pk_test_rmo8R31SMUZkbyv2TTU7osQz',
-
+        // key:		'pk_yLFjPSiZOODGvjlBquqqNpcfqo2Fa',
         //Live Key:
-        // key:         'pk_live_MVBbOnmTzVS8jQrYQ8Xjl3oN',
-
-        amount:      total + '00',
-        name:        'Checkout',
-        description: function() {
+        key:		'pk_UyniFUBW5FwmyFDfbiNxWdVEOSuTP',
+        amount:		total + '00',
+        name:		'Checkout',
+        description:	function() {
             return num_selected() + ' items (' + total + ')';
         },
         panelLabel:  'Checkout',
