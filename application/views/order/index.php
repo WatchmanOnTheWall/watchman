@@ -172,7 +172,10 @@
         <script src="https://checkout.stripe.com/v2/checkout.js"></script>
         <script type="text/javascript">
             var inventory			= <?php echo json_encode( $query ) ?>;
-            var sale				= <?php echo $sale_on ?>;
+            var sale				= null;
+            if ( "<?php echo $sale_on ?>" === "1" ) {
+                var sale			= 1;
+            }
         </script>
         <script src="/resources/js/order.js"></script>
 

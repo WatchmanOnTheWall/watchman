@@ -19,8 +19,7 @@
 	}
     }
 ?>
-
-
+<link rel="icon" href="<?php echo base_url()?>resources/images/favicon.ico" type="text/css" media="screen" />
 <link href="<?php echo base_url() ?>resources/css/reset.css"
       rel="stylesheet" type="text/css" />
 <link href="<?php echo base_url() ?>resources/css/template.css"

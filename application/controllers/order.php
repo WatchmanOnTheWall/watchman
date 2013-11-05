@@ -145,7 +145,7 @@ class Order extends CI_Controller {
 	    $config[ 'mailtype' ] = 'html';
 				
 	    $this->email->initialize($config);
-	    $this->email->from('contact@webheroes.ca', 'Watchman');
+	    $this->email->from('info@watchman.ca', 'Watchman');
 	    $this->email->bcc( $admin_email );
 	    $this->email->to( $email );
 	    $this->email->subject('Watchman Order');

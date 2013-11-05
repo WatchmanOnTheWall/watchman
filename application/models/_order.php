@@ -39,6 +39,7 @@ class _order extends CI_Model {
 	
 	// Get the credit card details submitted by the form
 	$token = $_POST['stripeToken'];
+
 	// Create the charge on Stripe's servers - this will charge the user's
 	// card
 	try {

@@ -15,7 +15,7 @@
 |
 */
 
-define( 'URL_WATCHMAN', 'http://dev.watchman.ca/' );
+define( 'URL_WATCHMAN', 'http://watchman.ca/' );
 
 $config['base_url']	= URL_WATCHMAN;
 
