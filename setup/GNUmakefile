@@ -9,8 +9,23 @@ apache_conf		= /etc/apache2/sites-available/watchman.conf
 web_dir			= /server/watchman.ca
 web_log_dir		= /server/logs/watchman.ca
 
+git_username		= $$( git config --global user.name )
+git_email		= $$( git config --global user.email )
+
 all:	$(index) $(config) $(database) website
 	@/bin/echo -e "\e[1;37mFinished making all\e[1;00m"
+	@if [ ! -n "$(git_username)" ]; then			\
+	    echo "Git user.name is not set";			\
+	    read -p "What is your git user.name: " username;	\
+	    git config --global user.name "$$username";		\
+	    echo "Git user.name is now set to: $$username";	\
+	fi
+	@if [ ! -n "$(git_email)" ]; then			\
+	    echo "Git user.email is not set";			\
+	    read -p "What is your git user.email: " email;	\
+	    git config --global user.email "$$email";		\
+	    echo "Git user.email is now set to: $$email";	\
+	fi
 
 $(config):	config.php
 	cp $< $@
@@ -23,20 +38,21 @@ $(index):	index.php
 
 website:	site_config $(web_log_dir) $(web_dir)
 	@/bin/echo -e "\e[1;37mFinished making website\e[1;00m"
-	@/bin/echo -e "\e[1;37mRun \e[1;35m'a2ensite watchman.conf; service apache2 reload'\e[1;00m"
 
 site_config:	$(apache_conf)
-	@/bin/echo -e "\e[1;37mFinished making site_config\e[1;00m"
 
 $(web_dir):	/server/logs
-	@/bin/echo -e "\e[1;37mLinking $@\e[1;00m"
-	@if [ ! -d $@ ]; then 			\
-	    ln -s ~/src/watchman.ca/ $@;	\
+	@if [ ! -d $@ ]; then 				\
+	    /bin/echo -e "\e[1;37mLinking $@\e[1;00m";	\
+	    ln -s ~/src/watchman.ca/ $@;		\
 	fi
 
 $(apache_conf):	./watchman.conf
 	@/bin/echo -e "\e[1;37mCopying apache config $< to $@\e[1;00m"
 	sudo cp $< $@
+	sudo a2ensite watchman.conf
+	@/bin/echo -e "\e[1;37mFinished making site_config\e[1;00m"
+	@/bin/echo -e "\e[1;37mRun \e[1;35m'sudo service apache2 reload'\e[1;00m"
 
 /server:
 	@/bin/echo -e "\e[1;37mMaking $@ director in root\e[1;00m"
