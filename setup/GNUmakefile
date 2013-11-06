@@ -1,5 +1,5 @@
 
-.PHONY:	all FORCE clean clean-configs site_config website
+.PHONY:	all FORCE clean clean-configs site_config website database
 .SILENT: clean
 
 config			= ../application/config/config.php
@@ -55,6 +55,29 @@ $(apache_conf):	./watchman.conf
 	@if [ -d '/server/logs' ]; then		\
 	    mkdir --mode=775 -p $@;		\
 	    sudo chown www-data:sudo $@;	\
+	fi
+
+database-%:
+	@if [ ! -f "$*.db" ]; then		\
+	    echo "Creating database $* and user $*"; \
+	    pass='testing';			\
+	    echo "CREATE DATABASE $*;"		\
+	         "GRANT ALL PRIVILEGES ON $*.* TO $*@localhost IDENTIFIED BY '$pass';" \
+	         "FLUSH PRIVILEGES;"		\
+	    | mysql -u root;			\
+	    echo "Loading ../sql/watchman.db.sql into database $*"; \
+	    mysql -u root $* < ../sql/watchman.db.sql; \
+	    touch $*.db;			\
+	fi
+
+drop-database-%:
+	@if [ -f "$*.db" ]; then		\
+	    echo "Dropping database $* and user $*"; \
+	    echo "DROP DATABASE $*;"		\
+	         "DROP USER $*@localhost;"	\
+	         "FLUSH PRIVILEGES;"		\
+	    | mysql -u root;			\
+	    rm $*.db;				\
 	fi
 
 clean:	FORCE

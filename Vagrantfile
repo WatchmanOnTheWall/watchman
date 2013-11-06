@@ -19,10 +19,12 @@ Vagrant.configure("2") do |config|
             multitail aspell screen				\
             apache2 mysql-server mysql-client php5 php5-mysql	\
         && sudo addgroup vagrant staff				\
+        && cp ~/parent.ssh/id_* ~/.ssh/				\
         && echo && echo "Login w/ vagrant ssh"			\
 	'
   end
   config.vm.synced_folder		   "..", "/home/vagrant/src"
+  config.vm.synced_folder		   "../../.ssh", "/home/vagrant/parent.ssh/"
   config.vm.provider "vmware_fusion" do |v|
     v.vmx["memsize"]			= "2048"
     v.vmx["numvcpus"]			= "2"
