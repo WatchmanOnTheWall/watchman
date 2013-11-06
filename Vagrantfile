@@ -1,16 +1,21 @@
 # -*- mode: ruby -*-
 Vagrant.configure("2") do |config|
-  config.vm.box				= "jessie64"
-  config.vm.box_url			= "http://box.hardconsulting.com/jessie64.box"
+  config.vm.box				= "wheezy64"
+  config.vm.box_url			= ""
   config.vm.provision "shell" do |s|
     s.inline 				= '			\
-        apt-get update						\
+        echo -e "\
+\ndeb http://mirrors.kernel.org/debian/ jessie main contrib non-free\
+\ndeb-src http://mirrors.kernel.org/debian/ jessie main contrib non-free\
+\n" >> /etc/apt/sources.list					\
+        && echo \'APT::Default-Release "wheezy";\' > /etc/apt/apt.conf \
+        && apt-get update					\
         && apt-get -u -y dist-upgrade				\
+        && DEBIAN_FRONTEND=noninteractive apt-get install -y -t jessie emacs24-nox emacs24-el	\
         && apt-get install -y					\
             apt-show-versions python-pip			\
-            lxc wget bsdtar curl git aufs-tools			\
-            emacs24-nox emacs24-el screen			\
-            multitail aspell					\
+            wget bsdtar curl git				\
+            multitail aspell screen				\
             apache2 mysql-server mysql-client php5 php5-mysql	\
         && sudo addgroup vagrant staff				\
         && echo && echo "Login w/ vagrant ssh"			\

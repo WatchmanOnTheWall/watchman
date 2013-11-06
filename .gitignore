@@ -1,4 +1,4 @@
-/.vagrant
+/.vagrant*
 /index.php
 /application/logs/
 /application/config/config.php
