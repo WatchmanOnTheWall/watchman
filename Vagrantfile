@@ -11,8 +11,9 @@ Vagrant.configure("2") do |config|
         && echo \'APT::Default-Release "wheezy";\' > /etc/apt/apt.conf \
         && apt-get update					\
         && apt-get -u -y dist-upgrade				\
-        && DEBIAN_FRONTEND=noninteractive apt-get install -y -t jessie emacs24-nox emacs24-el	\
-        && apt-get install -y					\
+        && DEBIAN_FRONTEND=noninteractive apt-get install -y -t jessie \
+            emacs24-nox emacs24-el				\
+        && DEBIAN_FRONTEND=noninteractive apt-get install -y	\
             apt-show-versions python-pip			\
             wget bsdtar curl git				\
             multitail aspell screen				\
