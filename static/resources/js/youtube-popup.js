@@ -59,16 +59,16 @@
     function pop( r )
     {
         if( r == "drop" ){
-            $('.popup').hide()
-            popup.hide()
-                .html(""),
-            console.log( 'Popup dropped.' )
-            return true
+            $('.popup').hide();
+            popup.hide().html("");
+            console.log( 'Popup dropped.' );
+            return true;
         }
-        else(
-            popup.show(),
-            console.log( 'Popup popped.' )
-        )}
+        else {
+            popup.show();
+            console.log( 'Popup popped.' );
+        }
+    }
 
     
     tube.fetch( function(data) {
@@ -78,7 +78,7 @@
                 .append(
                     video_box()
                         .append(
-                            img().attr( 'src', video.thumbnail.sqDefault ),
+                            img().attr( 'src', video.thumbnail.hqDefault ),
                             youtitle().html( this.data.items[i].title ),
                             play()
                                 .attr({

@@ -720,14 +720,14 @@ dl.definition dd {
 
 .thumbnail {
   float: left;
-  margin: 30px 54px;
-  box-shadow: 0 0 7px 2px;
+  width: 228px;
   position: relative;
   overflow: hidden;
 }
 
 .thumbnail img {
-  margin: -12px 0 0;
+  max-width: 100%;
+  margin: -23px 0;
 }
 
 .thumbnail .play {
@@ -740,14 +740,22 @@ dl.definition dd {
 }
 
 .thumbnail .play:hover {
+  width: 100%;
+  height: 100%;
   background: url('../images/youtube-hover.png') no-repeat;
   background-position: 6px -20px;
   background-size: 90%;
 }
 
 .youtitle {
-  padding: 5px;
-  background: white;
+  color: white;
+  width: 100%;
+  padding: 10px;
+  text-align: center;
+  background: rgba(0,0,0,.5);
+  position: absolute;
+  bottom: 0;
+  left: 0;
 }
 
 /*----------------------------------------
