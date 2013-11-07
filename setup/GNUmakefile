@@ -12,7 +12,7 @@ web_log_dir		= /server/logs/watchman.ca
 git_username		= $$( git config --global user.name )
 git_email		= $$( git config --global user.email )
 
-all:	$(index) $(config) $(database) website
+all:		$(index) $(config) $(database) website
 	@/bin/echo -e "\e[1;37mFinished making all\e[1;00m"
 	@if [ ! -n "$(git_username)" ]; then			\
 	    echo "Git user.name is not set";			\
@@ -26,6 +26,9 @@ all:	$(index) $(config) $(database) website
 	    git config --global user.email "$$email";		\
 	    echo "Git user.email is now set to: $$email";	\
 	fi
+
+all-dev:	all database-dev_watchman
+all-live:	all database-watchman
 
 $(config):	config.php
 	cp $< $@

@@ -17,7 +17,8 @@ Vagrant.configure("2") do |config|
             apt-show-versions python-pip			\
             wget bsdtar curl git				\
             multitail aspell screen				\
-            apache2 mysql-server mysql-client php5 php5-mysql	\
+            apache2 php5 php5-mysql php5-curl			\
+            mysql-server mysql-client				\
         && sudo addgroup vagrant staff				\
         && cp ~/parent.ssh/id_* ~/.ssh/				\
         && echo && echo "Login w/ vagrant ssh"			\
