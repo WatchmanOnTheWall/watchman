@@ -49,8 +49,10 @@ class _order extends CI_Model {
 						   "card" => $token,
 						   "description" => "payinguser@example.com")
 					    );
+	    return true;
 	} catch(Stripe_CardError $e) {
 	    // The card has been declined
+	    return $e->getMessage();
 	}
     }
     //
