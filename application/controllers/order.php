@@ -15,6 +15,7 @@ class Order extends CI_Controller {
     function index()
     {
 	$query				= $this->Order->get_inventory();
+	$data[ 'error' ]		= $this->input->get('error');
 	$data[ 'title' ]		= 'Online Store';
 	$data[ 'audio' ]		= false;
 	$data[ 'video' ]		= false;
@@ -134,7 +135,11 @@ class Order extends CI_Controller {
 	      
 	    // Create the charge on Stripe's servers - this will charge the user's
 	    // card
-	    $this->Order->charge( $api_key, $amount );
+	    $charge = $this->Order->charge( $api_key, $amount );
+	    log_message('info', $charge);
+	    if( $charge !== 1 ) {
+	        redirect( base_url().'order?error='.$charge );
+	    }
 
 	    // Send Email
 	    $admin_email			= "travis@webheroes.ca";

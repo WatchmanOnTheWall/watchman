@@ -50,7 +50,12 @@
                                             </div>
                                         </div>
                                         <?php endif ?>
-                                        <hr class="break" />
+                                        <hr class="" />
+					    <?php
+					        if($error) {
+						    echo '<div class="alert alert-error"><b>Transaction failed:</b> '.$error.' </div>';
+						}
+					    ?>
                                         <div class="order pull-left">
                                             <h2>Contact</h2>
                                             <div>
