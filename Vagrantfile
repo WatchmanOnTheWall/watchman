@@ -1,22 +1,31 @@
 # -*- mode: ruby -*-
 Vagrant.configure("2") do |config|
-  config.vm.box				= "jessie64"
-  config.vm.box_url			= "http://box.hardconsulting.com/jessie64.box"
+  config.vm.box				= "wheezy64"
+  config.vm.box_url			= ""
   config.vm.provision "shell" do |s|
     s.inline 				= '			\
-        apt-get update						\
+        echo -e "\
+\ndeb http://mirrors.kernel.org/debian/ jessie main contrib non-free\
+\ndeb-src http://mirrors.kernel.org/debian/ jessie main contrib non-free\
+\n" >> /etc/apt/sources.list					\
+        && echo \'APT::Default-Release "wheezy";\' > /etc/apt/apt.conf \
+        && apt-get update					\
         && apt-get -u -y dist-upgrade				\
-        && apt-get install -y					\
+        && DEBIAN_FRONTEND=noninteractive apt-get install -y -t jessie \
+            emacs24-nox emacs24-el				\
+        && DEBIAN_FRONTEND=noninteractive apt-get install -y	\
             apt-show-versions python-pip			\
-            lxc wget bsdtar curl git aufs-tools			\
-            emacs24-nox emacs24-el screen			\
-            multitail aspell					\
-            apache2 mysql-server mysql-client php5 php5-mysql	\
+            wget bsdtar curl git				\
+            multitail aspell screen				\
+            apache2 php5 php5-mysql php5-curl			\
+            mysql-server mysql-client				\
         && sudo addgroup vagrant staff				\
+        && cp ~/parent.ssh/id_* ~/.ssh/				\
         && echo && echo "Login w/ vagrant ssh"			\
 	'
   end
   config.vm.synced_folder		   "..", "/home/vagrant/src"
+  config.vm.synced_folder		   "../../.ssh", "/home/vagrant/parent.ssh/"
   config.vm.provider "vmware_fusion" do |v|
     v.vmx["memsize"]			= "2048"
     v.vmx["numvcpus"]			= "2"

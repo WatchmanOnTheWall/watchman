@@ -720,34 +720,49 @@ dl.definition dd {
 
 .thumbnail {
   float: left;
-  margin: 30px 54px;
-  box-shadow: 0 0 7px 2px;
+  width: 220px;
+  margin: 0 8px 8px 0;
+  box-shadow: 0 0 10px 0;
   position: relative;
   overflow: hidden;
 }
 
 .thumbnail img {
-  margin: -12px 0 0;
+  max-width: 100%;
+  margin: -23px 0;
 }
 
 .thumbnail .play {
   top: 0px;
-  width: 120px;
-  height: 67px;
+  width: 100%;
+  height: 100%;
   position: absolute;
   opacity: 0.8;
   cursor: pointer;
 }
 
 .thumbnail .play:hover {
+  width: 100%;
+  height: 100%;
   background: url('../images/youtube-hover.png') no-repeat;
-  background-position: 6px -20px;
-  background-size: 90%;
+  background-position: 70px;
+  background-size: 80px;
 }
 
 .youtitle {
-  padding: 5px;
-  background: white;
+  color: white;
+  width: 100%;
+  padding: 10px;
+  text-align: left;
+  font-size: 12px;
+  background: rgba(0,0,0,.7);
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+
+.youtitle span.date {
+  font-size: 12px;
 }
 
 /*----------------------------------------
@@ -764,7 +779,6 @@ dl.definition dd {
 }
 .popup iframe {
   position: relative;
-  box-shadow: 0 0 100px 20px black;
 }
 .over-shadow {
   z-index: 999;
@@ -772,20 +786,19 @@ dl.definition dd {
   height: 100%;
   width: 100%;
   background: black;
-  opacity: 0.9;
+  opacity: 0.8;
   display: none;
 }
 [name="close"] {
   display: inline-block;
-  font-size: 24px;
-  color: #FFF;
-  border-bottom: 3px solid #FFF;
-  background: transparent;
-  position: relative;
+  padding: 6px 10px;
+  font-size: 16px;
+  color: #000;
+  background: rgba(255,255,255,0.8);
+  position: absolute;
 }
 [name="close"]:hover {
-  color: #999;
-  border-color: #999;
+  background: rgba(255,255,255,1);
   cursor: pointer;
 }
 

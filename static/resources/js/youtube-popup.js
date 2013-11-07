@@ -43,7 +43,7 @@
     ,close				= function() {
         var item = $('<a />')
             .attr('name', 'close')
-            .html( 'close' )
+            .html( 'Close' )
         $( item ).on( 'click',  function() {
             pop( 'drop' )
             console.log('CLOSE ON CLICK;' )
@@ -59,30 +59,35 @@
     function pop( r )
     {
         if( r == "drop" ){
-            $('.popup').hide()
-            popup.hide()
-                .html(""),
-            console.log( 'Popup dropped.' )
-            return true
+            $('.popup').hide();
+            popup.hide().html("");
+            console.log( 'Popup dropped.' );
+            return true;
         }
-        else(
-            popup.show(),
-            console.log( 'Popup popped.' )
-        )}
+        else {
+            popup.show();
+            console.log( 'Popup popped.' );
+        }
+    }
 
     
     tube.fetch( function(data) {
         
         this.each( function( i, video ) {
+            var months = [ 'Jan', 'Feb', 'Mar', 'Apr',
+                           'May', 'Jun', 'Jul', 'Aug',
+                           'Sep', 'Oct', 'Nov', 'Dec' ];
+            var d = new Date(video.uploaded)
+            , date = months[d.getMonth()]+' '+d.getDay()+', '+d.getFullYear();
             $('.videos')
                 .append(
                     video_box()
                         .append(
-                            img().attr( 'src', video.thumbnail.sqDefault ),
-                            youtitle().html( this.data.items[i].title ),
+                            img().attr( 'src', video.thumbnail.hqDefault ),
+                            youtitle().html( video.title + '<span class="date"> - uploaded '+date+'</span>' ),
                             play()
                                 .attr({
-                                    dataid: this.data.items[i].id
+                                    dataid: video.id
                                 })
                         )
                 )
@@ -99,8 +104,8 @@
             var vhalf			= $('.popup iframe').height()/2;
             $( '[name="close"]' )
                 .css({
-                    right: hhalf,
-                    top: -vhalf
+                    left: hhalf,
+                    bottom: vhalf - 28
                 })
             $( '.popup iframe' )
                 .css({

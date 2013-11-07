@@ -1,5 +1,6 @@
-/.*
+/.vagrant*
 /index.php
 /application/logs/
 /application/config/config.php
 /application/config/database.php
+/setup/*.db

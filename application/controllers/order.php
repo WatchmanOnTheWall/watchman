@@ -65,10 +65,10 @@ class Order extends CI_Controller {
 	    $data[ 'query' ]		= $this->Order->get_inventory();
 	    
 	    //Dev Key:
-	    /* $api_key		= "2KBHK7QsyCry40kURtkWDODDfdro4oBb"; */
+	    	   $api_key		= "sk_test_S95Wl40z76CwrkDXFPgSE23v";
 
 	    //Live Key:
-	    $api_key		= "msVXO9a8a2BLUQIbRiRFnrNbTijcQXeH";
+	    //    $api_key		= "sk_live_72IHAofr91oYTybfcIb3SUfo";
 
 	    // Set your secret key: remember to change this to your live secret key
 	    // in production
@@ -142,6 +142,7 @@ class Order extends CI_Controller {
 	    $message				= $this->load->view( 'order/email', $data, true );
 	    $this->load->view( 'order/email', $data );
 	    $this->load->library( 'email' );
+	    // $config[ 'protocol' ] = 'sendmail';
 	    $config[ 'mailtype' ] = 'html';
 				
 	    $this->email->initialize($config);
