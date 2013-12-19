@@ -201,9 +201,9 @@ $('#checkout-button').click(function(){
 
     StripeCheckout.open({
         //Dev Key:
-        key:		'pk_test_rmo8R31SMUZkbyv2TTU7osQz',
+        // key:		'pk_test_rmo8R31SMUZkbyv2TTU7osQz',
         //Live Key:
-        //key:		'pk_live_MVBbOnmTzVS8jQrYQ8Xjl3oN',
+        key:		'pk_live_MVBbOnmTzVS8jQrYQ8Xjl3oN',
         amount:		total + '00',
         name:		'Checkout',
         description:	function() {

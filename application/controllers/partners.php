@@ -54,7 +54,7 @@ class Partners extends CI_Controller {
 	    	   $api_key		= "sk_test_S95Wl40z76CwrkDXFPgSE23v";
 
 	    //Live Key:
-	    //    $api_key		= "sk_live_72IHAofr91oYTybfcIb3SUfo";
+	       /* $api_key		= "sk_live_72IHAofr91oYTybfcIb3SUfo"; */
 
 	    // Set your secret key: remember to change this to your live secret key
 	    // in production
