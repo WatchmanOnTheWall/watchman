@@ -37,9 +37,9 @@ $('form#donation-form #donate-button').click( function(e){
     console.log( token );
     StripeCheckout.open({
         //Dev Key:
-        key:		'pk_test_rmo8R31SMUZkbyv2TTU7osQz',
+        // key:		'pk_test_rmo8R31SMUZkbyv2TTU7osQz',
         //Live Key:
-        //key:		'pk_live_MVBbOnmTzVS8jQrYQ8Xjl3oN',
+        key:		'pk_live_MVBbOnmTzVS8jQrYQ8Xjl3oN',
         amount:		amount + '00',
         name:		'Donate',
         description:	function() {
