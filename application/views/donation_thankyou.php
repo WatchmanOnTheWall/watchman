@@ -33,7 +33,7 @@
                                     <?php endif; ?>
                                     <p style="font-size: 16px">Thankyou for your donation of
                                         $<?php echo $amount ?>.00 CAD to
-                                        Wathcman on the Wall Ministries. <br />
+                                        Watchman on the Wall Ministries. <br />
                                         An email was sent out to <?php echo $email ?>
                                     </p>
                                 </div>
