@@ -30,7 +30,7 @@ class _order extends CI_Model {
 	return $query->result();
     }
 
-    function charge( $api_key, $amount ) {
+    function charge( $api_key, $amount, $email ) {
 
 	// Set your secret key: remember to change this to your live secret key
 	// in production
@@ -47,11 +47,12 @@ class _order extends CI_Model {
 						   "amount" => $amount,
 						   "currency" => "cad",
 						   "card" => $token,
-						   "description" => "payinguser@example.com")
+						   "description" => $email )
 					    );
 	    return true;
 	} catch(Stripe_CardError $e) {
-	    // The card has been declined
+	    echo 'The card has been declined <br />';
+		
 	    return $e->getMessage();
 	}
     }

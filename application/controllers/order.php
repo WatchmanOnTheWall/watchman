@@ -10,7 +10,6 @@ class Order extends CI_Controller {
 	include( FCPATH.'stripe-php-1.7.15/lib/Stripe.php'  );
 	$this->sale_on			= $this->Order->sale_on();
     }
-
     
     function index()
     {
@@ -59,7 +58,6 @@ class Order extends CI_Controller {
 
 	$this->load->view( 'order/item', $data );
     }
-    
     
     function cont( ) {
 	if( ! isset( $_POST[ 'stripetoken' ] ) ){
@@ -135,14 +133,14 @@ class Order extends CI_Controller {
 	      
 	    // Create the charge on Stripe's servers - this will charge the user's
 	    // card
-	    $charge = $this->Order->charge( $api_key, $amount );
+	    $charge = $this->Order->charge( $api_key, $amount, $email );
 	    log_message('info', $charge);
-	    if( $charge !== 1 ) {
+	    if( $charge !== true ) {
 	        redirect( base_url().'order?error='.$charge );
 	    }
 
 	    // Send Email
-	    $admin_email			= "travis@webheroes.ca";
+	    $admin_email			= "admin@watchman.ca";
 				
 	    $message				= $this->load->view( 'order/email', $data, true );
 	    $this->load->view( 'order/email', $data );
