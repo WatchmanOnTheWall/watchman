@@ -73,7 +73,7 @@ function active( $tab, $active ) {
             </a>
         </li>
 	<li <?php active( 'partners', $active )  ?> > 
-            <a href="/partners.php">
+            <a href="/partners">
                 <span>Partners</span>
             </a>
         </li>

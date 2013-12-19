@@ -1,3 +1,4 @@
+<?php $active = 'partners'; ?>
 <!doctype html>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
     <head>
@@ -68,7 +69,7 @@
                                 </div>
                             </div>
                         </div>
-
+                        
                         <div class="content right">
 			    <?php
 				if($error) {
@@ -91,13 +92,13 @@
                                             </div>
                                             <div class="input-group">
                                                 <span class="label">
-                                                <b>Email:</b>
+                                                    <b>Email:</b>
                                                 </span>
                                                 <input type="text" name="email"
                                                        class="form-control"
                                                        style="width: 125px"/>
                                             </div>
-
+                                            
                                             <span class="label pull-left">Amount:</span>
                                             <div class="input-group">
                                                 <span class="input-group-addon">
@@ -117,19 +118,19 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- Bottom Content -->
-	                    <div id="content_bottom">
-                                <?php
-				    include FCPATH . 'static/resources/copyright.php';
-				?>
-	                    </div>
-                            <div style="clear: both; margin: -7px 0;"></div>
-                        </div>
                         
+                        <!-- Bottom Content -->
+	                <div id="content_bottom">
+                            <?php
+				include FCPATH.'static/resources/copyright.php';
+			    ?>
+	                </div>
+                        <div style="clear: both; margin: -7px 0;"></div>
                     </div>
+                    
                 </div>
                 <!-- Stop Container Middle -->
-            
+                
                 <!-- Start Container Bottom -->
                 <div class="container_bottom">
 
@@ -139,7 +140,7 @@
             </div>
         </div>
         <?php
-     	    include FCPATH.'static/resources/scripts.php' ;
+	    include FCPATH.'static/resources/scripts.php';
 	?>
         <script src="https://js.stripe.com/v1/"></script>
         <script src="https://checkout.stripe.com/v2/checkout.js"></script>
