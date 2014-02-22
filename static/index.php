@@ -29,7 +29,7 @@
                                         src="http://www.youtube.com/embed/CEVUf_RM6uI?feature=player_embedded"
                                         frameborder="0"
                                         allowfullscreen></iframe>
-                                <img src="<?php echo base_url() ?>resources/images/5-smooth-stones-banner.jpg"
+                                <img src="<?php echo base_url() ?>images/5-smooth-stones-banner.jpg"
                                      class="banner" alt="5 Smooth Stones" />
                             </div>
                         </div>
@@ -39,16 +39,23 @@
                             <div class="padding">
                                 <div class="moduletable">
                                     <h3>Watchman Chronicle Sign up</h3>
+
                                     <form name="add_to_email_list" id="" action="">
+                                        <div class="processing"></div>
+                                        <div class="success"></div>
+                                        
                                         <label for="first_name">First Name:</label>
-                                        <input type="text" id="first_name" value="" />
+                                        <input type="text" name="first_name" />
 
                                         <label for="last_name">Last Name:</label>
-                                        <input type="text" id="last_name" value="" />
+                                        <input type="text" name="last_name" />
                                         
                                         <label for="email">Email:</label>
-                                        <input type="text" id="email" value="" />
+                                        <input type="text" name="email" />
+
+                                        <input type="submit" value="Sign up" />
                                     </form>
+                                    <br />
                                 </div>
 
                                 <div class="moduletable">
@@ -69,7 +76,7 @@
                                     <div style="text-align: center;">
                                         <a href="/media/video.php">
                                             <img class="banner"
-                                                 src="<?php echo base_url() ?>/resources/images/off-the-wall-tv.jpg"
+                                                 src="<?php echo base_url() ?>images/off-the-wall-tv.jpg"
                                                  class="" alt="Off The Wall" />
                                         </a>
                                     </div>

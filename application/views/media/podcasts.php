@@ -1,14 +1,12 @@
 <?php $active = 'media'; ?>
 <!doctype html>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
-    <head>
-        
-        <!-- Global Head -->
-        <?php
-     	    include FCPATH.'static/resources/head.php';
-	?>
-
-    </head>
+    
+    <!-- Head Tag -->
+    <?php
+     	include FCPATH.'static/resources/head.php';
+    ?>
+    
     <body>
         <div class="body">
             <div id="container">
@@ -20,17 +18,30 @@
 		    ?>
                 </div>
                 <!-- Stop Container Top -->
-
+                
                 <!-- Start Container Middle -->
                 <div class="container_middle">
                     <div class="padding">
-                        
                         <!-- Main Content -->
-                        <div class="content" style="width: 955px; height: auto;">
+                        <div class="content" style="width: 958px; height: auto;">
                             <div class="padding">
-                                <h1>Videos</h1>
-                                <div class="videos">
-                                </div>
+                                <h1>
+                                    <?= $podcasts->title; ?>
+                                </h1>
+                                <br />
+                                <ul>
+                                <?php
+     				    foreach( $podcasts->item as $item ):
+				?>
+                                <li>
+                                    <a target="_blank" href="<?= $item->enclosure->attributes()->url
+     				    ?>" style="width:250px;">
+                                        <?= $item->title ?>
+                                    </a>
+                                    <?= date( 'M, d, Y', strtotime( $item->pubDate ) ) ?>
+                                </li>
+                                <?php endforeach ?>
+                                <ul/>
                             </div>
                         </div>
                         
@@ -42,23 +53,18 @@
 	                </div>
                         <div style="clear: both; margin: -7px 0;"></div>
                     </div>
-                    
                 </div>
+                
                 <!-- Stop Container Middle -->
                 
                 <!-- Start Container Bottom -->
                 <div class="container_bottom">
-
+                    
                 </div>
                 <!-- Stop Container Bottom -->
                 
             </div>
         </div>
-
-        <?php
-     	    include FCPATH.'static/resources/scripts.php' ;
-	?>
-        <script type="text/javascript" src="<?php echo base_url() ?>js/youtube.js"></script>
-        <script type="text/javascript" src="<?php echo base_url() ?>js/youtube-popup.js"></script>
     </body>
 </html>
+

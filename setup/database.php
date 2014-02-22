@@ -64,6 +64,22 @@ $db['default']['swap_pre'] = '';
 $db['default']['autoinit'] = TRUE;
 $db['default']['stricton'] = FALSE;
 
+$db['echronicle']['hostname'] = 'localhost';
+$db['echronicle']['username'] = 'dev_watchman';
+$db['echronicle']['password'] = 'testing';
+$db['echronicle']['database'] = 'echronicle';
+$db['echronicle']['dbdriver'] = 'mysql';
+$db['echronicle']['dbprefix'] = '';
+$db['echronicle']['pconnect'] = TRUE;
+$db['echronicle']['db_debug'] = TRUE;
+$db['echronicle']['cache_on'] = FALSE;
+$db['echronicle']['cachedir'] = '';
+$db['echronicle']['char_set'] = 'utf8';
+$db['echronicle']['dbcollat'] = 'utf8_general_ci';
+$db['echronicle']['swap_pre'] = '';
+$db['echronicle']['autoinit'] = TRUE;
+$db['echronicle']['stricton'] = FALSE;
+
 
 /* End of file database.php */
 /* Location: ./application/config/database.php */
