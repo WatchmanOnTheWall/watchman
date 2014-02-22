@@ -69,7 +69,8 @@ class Media extends CI_Controller {
 	    log_message( 'info', 'There were '.count( $data['item'] ).' items grabbed');
 	}
     }
-    function reader() {
+    function reader()
+    {
 	$id			= $this->uri->segment( 3 );
 	$query			= $this->Chronicle->get_one( $id );
 	$data['article']	= $query;
@@ -84,6 +85,16 @@ class Media extends CI_Controller {
 	    log_message( 'info', 'There were '.count( $data ).' items grabbed');
 	}
 
+    }
+
+    function podcasts()
+    {
+	$this->load->model( '_podcast', 'Podcast' );
+	$feed			= 'http://watchmanministries.libsyn.com/rss';
+	
+	$rss			= $this->Podcast->read( $feed );
+	$data['podcasts']	= $rss->channel;
+	$this->load->view( 'media/podcasts', $data);
     }
 }
 ?>
