@@ -45,13 +45,13 @@
                                         <div class="success"></div>
                                         
                                         <label for="first_name">First Name:</label>
-                                        <input type="text" name="first_name" value="aslkdffjkld" />
+                                        <input type="text" name="first_name" />
 
                                         <label for="last_name">Last Name:</label>
-                                        <input type="text" name="last_name" value="asldkfj" />
+                                        <input type="text" name="last_name" />
                                         
                                         <label for="email">Email:</label>
-                                        <input type="text" name="email" value="booa@asdjflk.com" />
+                                        <input type="text" name="email" />
 
                                         <input type="submit" value="Sign up" />
                                     </form>
