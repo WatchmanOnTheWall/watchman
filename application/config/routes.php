@@ -38,6 +38,8 @@
 |
 */
 
+$route['(:any).php'] = 'static_pages/$1';
+
 $route['default_controller'] = "home";
 $route['404_override'] = '';
 

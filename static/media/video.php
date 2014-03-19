@@ -5,7 +5,7 @@
         
         <!-- Global Head -->
         <?php
-     	    include '../resources/head.php';
+     	    include FCPATH.'static/resources/head.php';
 	?>
 
     </head>
@@ -16,7 +16,7 @@
                 <!-- Start Container Top -->
                 <div class="container_top">
                     <?php
-     			include '../resources/header.php';
+     			include FCPATH.'static/resources/header.php';
 		    ?>
                 </div>
                 <!-- Stop Container Top -->
@@ -37,7 +37,7 @@
                         <!-- Bottom Content -->
 	                <div id="content_bottom">
                             <?php
-     				include '../resources/copyright.php';
+     				include FCPATH.'static/resources/copyright.php';
 			    ?>
 	                </div>
                         <div style="clear: both; margin: -7px 0;"></div>
@@ -56,9 +56,9 @@
         </div>
 
         <?php
-     	    include '../resources/scripts.php' ;
+     	    include FCPATH.'static/resources/scripts.php' ;
 	?>
-        <script type="text/javascript" src="<?php echo base_url() ?>resources/js/youtube.js"></script>
-        <script type="text/javascript" src="<?php echo base_url() ?>resources/js/youtube-popup.js"></script>
+        <script type="text/javascript" src="<?php echo base_url() ?>js/youtube.js"></script>
+        <script type="text/javascript" src="<?php echo base_url() ?>js/youtube-popup.js"></script>
     </body>
 </html>

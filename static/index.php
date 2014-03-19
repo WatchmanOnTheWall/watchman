@@ -29,7 +29,7 @@
                                         src="http://www.youtube.com/embed/CEVUf_RM6uI?feature=player_embedded"
                                         frameborder="0"
                                         allowfullscreen></iframe>
-                                <img src="<?php echo base_url() ?>resources/images/5-smooth-stones-banner.jpg"
+                                <img src="<?php echo base_url() ?>images/5-smooth-stones-banner.jpg"
                                      class="banner" alt="5 Smooth Stones" />
                             </div>
                         </div>
@@ -69,7 +69,7 @@
                                     <div style="text-align: center;">
                                         <a href="/media/video.php">
                                             <img class="banner"
-                                                 src="<?php echo base_url() ?>/resources/images/off-the-wall-tv.jpg"
+                                                 src="<?php echo base_url() ?>images/off-the-wall-tv.jpg"
                                                  class="" alt="Off The Wall" />
                                         </a>
                                     </div>
