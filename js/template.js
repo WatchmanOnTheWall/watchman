@@ -2,6 +2,7 @@
 $(document).ready(function() {
     	var form = $('form[name=add_to_email_list]');
 	var proc = form.find('div.processing');
+	var success = form.find('div.success');
 	var inputs = form.find('input[type=text]');
 	var submit = form.find('input[type=submit]');
 
@@ -46,20 +47,28 @@ $(document).ready(function() {
 		if( valid ) {
 		    proc.html('subscribing...')
 		    $.ajax({
-			url: "http://watchman.ca/email_manager/api/email_list/client_add",
-				type: "post",
-				dataType: "text",
-				data: data,
-			success: function(txt) {
-				console.log(txt);
-				if(txt=='true') {
-				    alert('Thank you for subscribing to our eChronicle.');
-				    inputs.attr("value", "");
-				} else  {
-				    alert('Sorry, we were unable to subscribe you at this time.')
-				}
-				proc.html('');
-			}
+			url: "api/chronicle/email/add",
+			dataType: "json",
+			data: data,
+			success: function( resp ) {
+			    console.log(resp);
+                            
+			    if( resp.status == false ) {
+			        alert(resp.error);
+			        proc.html('Failed');
+			    }
+                            else {
+			        inputs.val("");
+                                proc.html('')
+			        success
+                                    .html('Thank you for subscribing')
+                                    .show().fadeOut(3000)
+                                
+                            }
+			},
+			error: function( resp ) {
+                            console.log(resp.responseText)
+                        }
 		    })
 		} else {
 		    alert('Please fill in your first name, last name and email.')

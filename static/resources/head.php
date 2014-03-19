@@ -19,22 +19,22 @@
 	}
     }
 ?>
-<link rel="icon" href="<?php echo base_url()?>resources/images/favicon.ico" type="text/css" media="screen" />
-<link href="<?php echo base_url() ?>resources/css/reset.css"
+<link rel="icon" href="<?php echo base_url()?>images/favicon.ico" type="text/css" media="screen" />
+<link href="<?php echo base_url() ?>css/reset.css"
       rel="stylesheet" type="text/css" />
-<link href="<?php echo base_url() ?>resources/css/template.css"
+<link href="<?php echo base_url() ?>css/template.css"
       rel="stylesheet" type="text/css" />
-<link href="<?php echo base_url() ?>resources/css/style.css"
+<link href="<?php echo base_url() ?>css/style.css"
       rel="stylesheet" type="text/css" />
 
 <!--[IF IE]>
-    <link href="<?php echo base_url() ?>resources/css/ie.css" rel="stylesheet" type="text/css" />
+    <link href="<?php echo base_url() ?>css/ie.css" rel="stylesheet" type="text/css" />
     <![ENDIF]-->
 <!--[IF IE 7]>
-    <link href="<?php echo base_url() ?>resources/css/ie7.css" rel="stylesheet" type="text/css" />
+    <link href="<?php echo base_url() ?>css/ie7.css" rel="stylesheet" type="text/css" />
     <![ENDIF]-->
 <!--[IF IE 8]>
-    <link href="<?php echo base_url() ?>resources/css/ie8.css" rel="stylesheet" type="text/css" />
+    <link href="<?php echo base_url() ?>css/ie8.css" rel="stylesheet" type="text/css" />
     <![ENDIF]-->
 <script type="text/javascript">
     var base_url		= "<?php echo base_url() ?>"
