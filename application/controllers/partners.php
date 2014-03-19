@@ -51,10 +51,10 @@ class Partners extends CI_Controller {
     {
 	if( ! isset( $_POST[ 'stripetoken' ] ) ) {
 	    //Dev Key:
-	    	   $api_key		= "sk_test_S95Wl40z76CwrkDXFPgSE23v";
+	    /* $api_key		= "sk_test_S95Wl40z76CwrkDXFPgSE23v"; */
 
 	    //Live Key:
-	    //    $api_key		= "sk_live_72IHAofr91oYTybfcIb3SUfo";
+	       $api_key		= "sk_live_72IHAofr91oYTybfcIb3SUfo";
 
 	    // Set your secret key: remember to change this to your live secret key
 	    // in production
@@ -82,12 +82,15 @@ class Partners extends CI_Controller {
 	    log_message('info', $charge);
 
 	    if( $charge !== true ) {
-	        redirect( base_url().'partners?error='.$charge );
+		redirect( base_url().'partners?error='.$charge );
+		return false;
 	    }
 
 	    // Send Email
 	    $admin_email			= "admin@watchman.ca";
-
+	    
+	    $data['initial_amount']		= $_POST[ 'amount' ];
+	    
 	    $message				= $this->load->view( 'donation_thankyou_email', $data, true );
 
 	    $this->load->library( 'email' );
