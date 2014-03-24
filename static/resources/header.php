@@ -55,11 +55,11 @@ function active( $tab, $active ) {
                         <span>Video</span>
                     </a>
                 </li>
-                <!-- <li> -->
-                <!--     <a href="#"> -->
-                <!--         <span>Podcasts</span> -->
-                <!--     </a> -->
-                <!-- </li> -->
+                <li>
+                    <a href="/media/podcasts">
+                        <span>Podcasts</span>
+                    </a>
+                </li>
             </ul>
         </li>
     <li <?php active( 'order', $active )  ?> > 
