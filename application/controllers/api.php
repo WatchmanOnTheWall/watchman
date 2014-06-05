@@ -33,8 +33,11 @@ class api extends CI_Controller {
 	if( $type == 'email' ) {
 	    switch( $action ) {
 	    case 'list':
-		$emails		= $this->echronicle->email_list();
+		$filter		= $this->input->get_post('list');
+
+		$emails		= $this->echronicle->email_list( $filter );
 		$this->api->dump( $emails );
+
 		return;
 	    case 'add':
 		$first_name	= $this->input->get('first_name');
@@ -48,6 +51,7 @@ class api extends CI_Controller {
 					   $status );
 		
 		return;
+	    case 'unsubscribe':
 	    }
 	}
 	
@@ -57,6 +61,20 @@ class api extends CI_Controller {
 					    ]
 			    ];
 	$this->api->dump( $data );
+    }
+
+    function unsubscribe()
+    {
+	$email		= $this->input->get_post('email');
+	if( ! $email ) {
+	    $this->api->return_status( false, null, "You must supply an email" );
+	    return;
+	}
+
+        $status		= $this->echronicle->unsubscribe( $email );
+	$this->api->return_status( $status === true,
+				   "You have been unsubscribed from the eChronicle email list.",
+				   "Failed to unsubscribe '". $email ."' from the eChronicle email list. Please contact info@watchman.ca to resolve the issue." );
     }
 
 }

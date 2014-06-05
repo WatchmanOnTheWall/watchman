@@ -12,11 +12,14 @@ class _echronicle extends CI_Model {
 	$this->load->helper('email');
     }
 
-    function email_list()
+    function email_list( $filter = false )
     {
-	$query		= $this->db->query("
-  SELECT email FROM email_list
-");
+        $select		= "SELECT email FROM email_list ";
+	if( $filter )
+	    $select    .= "WHERE lists LIKE '%". $filter ."%' ";
+
+	$query		= $this->db->query( $select );
+
 	$result		= $query->result_array();
 	$data		= array_column( $result, 'email' );
 	return $data;
@@ -61,7 +64,12 @@ class _echronicle extends CI_Model {
     {
 	return mysql_errno() .': '. mysql_error();
     }
-    
+
+    function unsubscribe( $email )
+    {
+	$update	= " UPDATE email_list SET unsubscribed=1 WHERE email LIKE '%". $email ."%' ";
+	return $this->db->query( $update );
+    }
 }
 
 ?>
