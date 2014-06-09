@@ -47,11 +47,12 @@ class _echronicle extends CI_Model {
 	}
 	
 	$insert = "
-  INSERT INTO email_list (email, first_name, last_name, age, city, prov, country, phone)
-  VALUES (?,?,?,?,?,?,?,?)
+  INSERT INTO email_list (email, first_name, last_name, age, city, prov, country, phone, unsubscribed)
+  VALUES (?,?,?,?,?,?,?,?, 0)
+      ON DUPLICATE KEY UPDATE email=CONCAT(email, ' ', ?)
 ";
 	
-	$query		= $this->db->query( $insert, [$email, $first_name, $last_name, $age, $city, $province, $country, $phone] );
+	$query		= $this->db->query( $insert, [$email, $first_name, $last_name, $age, $city, $province, $country, $phone, $email] );
 
 	if( $query === false ) {
 	    return $this->sql_error();
