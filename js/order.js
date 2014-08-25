@@ -46,9 +46,9 @@ function build_row( data )
     , img_link		= $( '<a />' )
         .addClass( 'no-padding, span12' )
         .attr({
-            'href': '/resources/images/covers/' + data.image
+            'href': '/images/covers/' + data.image
         })
-        .css( 'background', ' url( "/resources/images/covers/'+data.image+ '") no-repeat')
+        .css( 'background', ' url( "/images/covers/'+data.image+ '") no-repeat')
     , info			= $( '<span />' )
         .addClass('info')
     , title			= $( '<h2 />' )

@@ -182,7 +182,7 @@
                 var sale			= 1;
             }
         </script>
-        <script src="/resources/js/order.js"></script>
+        <script src="/js/order.js"></script>
 
     </body>
 </html>

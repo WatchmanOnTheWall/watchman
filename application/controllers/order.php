@@ -25,7 +25,7 @@ class Order extends CI_Controller {
 
 	foreach( $data[ 'query' ] as $q ){
 
-	    $q->image = ( file_exists( FCPATH.'static/resources/images/covers/' . $q->image ) )
+	    $q->image = ( file_exists( FCPATH.'images/covers/' . $q->image ) )
 		? $q->image
 		: 'no-image.jpg';
 
@@ -52,7 +52,7 @@ class Order extends CI_Controller {
 	}
 	$data = $this->Order->get_item( $id )[0];
 	
-	$data->image = ( file_exists( FCPATH.'static/resources/images/covers/' . $data->image ) )
+	$data->image = ( file_exists( FCPATH.'images/covers/' . $data->image ) )
 	    ? $data->image
 	    : 'no-image.jpg';
 
