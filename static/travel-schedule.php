@@ -31,71 +31,24 @@
                                 <h1>Travel Schedule</h1>
                                 <div class="editable">
                                     <div class="indent">
-                                        <h2>May and June 2013</h2>
+                                        <h2>September 2014</h2>
                                         
-                                        <h3>May 2 - 13</h3>
+                                        <h3>September 3 - 11</h3>
                                         <p>
-                                            <b>Malaysia
-                                            </b>
+                                            <b>Ireland</b>
+                                        </p>
+
+                                        <h3>September 25 - 28</h3>
+                                        <p>
+                                            <b>Spruce Grove "Glory of the Father's House Conference"</b>
                                         </p>
                                         
-                                        <h3>June 2 - June 13</h3>
+                                        <h2>October 2014</h2>
+                                        
+                                        <h3>October 29 - November 14</h3>
                                         <p>
-                                            <b>BC / Guatemala</b>
+                                            <b>Italy/Israel</b>
                                         </p>
-                                        <table cellpadding="0"
-                                               cellspacing="0">
-                                            <tbody>
-                                                <tr>
-                                                    <td width="140">
-                                                        <p>June 2 -
-                                                            10am
-                                                        </p>
-                                                    </td>
-                                                    <td width="160">
-                                                        <p>Trail,
-                                                            BC
-                                                        </p>
-                                                    </td>
-                                                    <td width="170">
-                                                        <p>Gateway
-                                                            Christian Life
-                                                            Centre
-                                                        </p>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        <p>June 2 - 5
-                                                        </p>
-                                                    </td>
-                                                    <td>
-                                                        <p>Harrison Hot Springs,
-                                                            BC
-                                                        </p>
-                                                    </td>
-                                                    <td>
-                                                        <p>(Ministering at
-                                                            Pastors' Retreat)
-                                                        </p>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        <p>June 6 - 13
-                                                        </p>
-                                                    </td>
-                                                    <td>
-                                                        <p>Guatemala
-                                                        </p>
-                                                    </td>
-                                                    <td>
-                                                        <p>Location TBA
-                                                        </p>
-                                                    </td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
                                     </div>
                                 </div>
                             </div>
