@@ -31,24 +31,25 @@
                                 <h1>Travel Schedule</h1>
                                 <div class="editable">
                                     <div class="indent">
-                                        <h2>September 2014</h2>
+                                        <h2>2015</h2>
                                         
-                                        <h3>September 3 - 11</h3>
+                                        <h3>March 11 - 17</h3>
                                         <p>
-                                            <b>Ireland</b>
+                                            <b>Guatemala</b>
                                         </p>
 
-                                        <h3>September 25 - 28</h3>
+                                        <h3>March 24 - April 2</h3>
                                         <p>
-                                            <b>Spruce Grove "Glory of the Father's House Conference"</b>
+                                            <b>Tupelo, Mississippi</b>
                                         </p>
-                                        
+                                        <!--
                                         <h2>October 2014</h2>
                                         
                                         <h3>October 29 - November 14</h3>
                                         <p>
                                             <b>Italy/Israel</b>
-                                        </p>
+                                        </p> -->
+					
                                     </div>
                                 </div>
                             </div>

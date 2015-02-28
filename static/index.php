@@ -29,10 +29,6 @@
                                         src="http://www.youtube.com/embed/CEVUf_RM6uI?feature=player_embedded"
                                         frameborder="0"
                                         allowfullscreen></iframe>
-                                <iframe height="360" class="welcome-video"
-                                        src="http://www.youtube.com/embed/rqAahLLwJp0?feature=player_embedded"
-                                        frameborder="0"
-                                        allowfullscreen></iframe>
 
                                 <img src="<?php echo base_url() ?>images/5-smooth-stones-banner.jpg"
                                      class="banner" alt="5 Smooth Stones" />
