@@ -14,6 +14,8 @@ class _Chronicle extends CI_Model {
     {
 	$this->db->limit( $limit, $start );
 	
+	$this->db->order_by( 'created', 'desc' );
+	$this->db->order_by( 'id' );
 	$query			= $this->db->get( $this->table_name );
 	
 	$data			= $query->result();

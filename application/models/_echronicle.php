@@ -17,7 +17,9 @@ class _echronicle extends CI_Model {
         $select		= "SELECT email FROM email_list ";
 	if( $filter )
 	    $select    .= "WHERE lists LIKE '%". $filter ."%' ";
-
+        else
+	    $select    .= "WHERE unsubscribed=0";
+	    
 	$query		= $this->db->query( $select );
 
 	$result		= $query->result_array();

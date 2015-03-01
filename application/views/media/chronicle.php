@@ -43,7 +43,7 @@
                                             </a>
                                         </h2>
                                         <div class="sample">
-                                            <?php print_r( $a->sample ); ?>
+                                            <p><?php print_r( $a->sample ); ?></p>
                                         </div>
                                         <a href="<?php echo base_url()
 					    . 'media/reader/'
