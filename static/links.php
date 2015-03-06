@@ -35,9 +35,6 @@
                                                href="http://www.sgcommunity.org">Spruce
                                                 Grove Community Church</a></li>
                                         <li><a target="_blank"
-                                               href="http://www.treasurechestministries.ca">Treasure
-                                                Chest Ministries</a></li>
-                                        <li><a target="_blank"
                                                href="http://www.feviva.org">FeViva
                                                 World Missions</a></li>
                                         <li><a target="_blank"

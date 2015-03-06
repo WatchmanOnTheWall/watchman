@@ -31,7 +31,7 @@
                                 <h1>Travel Schedule</h1>
                                 <div class="editable">
                                     <div class="indent">
-                                        <h2>2015</h2>
+                                        <h2>March 2015</h2>
                                         
                                         <h3>March 11 - 17</h3>
                                         <p>
@@ -40,7 +40,20 @@
 
                                         <h3>March 24 - April 2</h3>
                                         <p>
-                                            <b>Tupelo, Mississippi</b>
+                                            <b>Tupelo, Mississippi</b><br />
+                                            March 29 - King's Gate Worship Center
+                                        </p>
+                                        <h2>April 2015</h2>
+                                        
+                                        <h3>April 27 - May 5</h3>
+                                        <p>
+                                            <b>Ireland</b>
+                                        </p>
+                                        <h2>July 2015</h2>
+                                        
+                                        <h3>July 3 - 13</h3>
+                                        <p>
+                                            <b>Hong Kong</b>
                                         </p>
                                         <!--
                                         <h2>October 2014</h2>
