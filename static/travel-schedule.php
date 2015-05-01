@@ -49,6 +49,12 @@
                                         <p>
                                             <b>Ireland</b>
                                         </p>
+                                        <h2>May 2015</h2>
+                                        
+                                        <h3>May 11 - 19</h3>
+                                        <p>
+                                            <b>Switzerland/France</b>
+                                        </p>
                                         <h2>July 2015</h2>
                                         
                                         <h3>July 3 - 13</h3>
